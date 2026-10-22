@@ -1,0 +1,23 @@
+Participant ID: M03
+Role: Principal investigator, university biophysics lab (7 people)
+Time using LabLoop: about 2 years
+Interview date: 2026-10-14
+Interviewer: R. Okafor
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for joining. How do you use LabLoop?
+M03: Very little for booking. But two of our instruments are set so that my approval is needed for overnight runs, and I get those requests on my phone, usually while I'm travelling or in meetings.
+Interviewer: How does approving on your phone go?
+M03: It's clumsy. The email says "a booking requires your approval," and I tap the link, and it takes me to the full LabLoop login, and then I have to find the approvals page, which on a phone is hidden in a menu. It takes me two or three minutes each time, which doesn't sound like much, but it's always at an inconvenient moment.
+Interviewer: What happens if you don't approve quickly?
+M03: The student can't start their overnight run, so they lose a day. I've had students message me on my personal phone asking me to approve, which isn't ideal.
+Interviewer: What would make it better?
+M03: An approve button in the email or the notification. One tap. I trust my students, I just need to say yes.
+Interviewer: Do you use LabLoop's reports on your phone?
+M03: No. For anything like utilisation or cost I use my laptop. I don't need that on mobile.
+Interviewer: Some people have told us mobile booking is fiddly. Is that your experience?
+M03: I don't really book, so I can't say. My students do complain about it, though.
+Interviewer: If you could change one thing, what would it be?
+M03: One-tap approvals from my phone.
+Interviewer: Thank you.
+M03: Thank you.

@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile interviews findings</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f5f4f0; --surface: #ffffff; --text: #1c1d1f; --muted: #62656b;
+  --border: #e3e1db; --accent: #2b5a87; --dot: #d9d6ce;
+  --ok: #1d6e45; --ok-bg: #e5f3eb; --warn: #7d5300; --warn-bg: #fcefd2;
+  --bad: #ad2a20; --bad-bg: #fbe6e3;
+  --ev: #2b5a87; --ev-bg: #e8f0f8; --in: #5a4a8c; --in-bg: #f1eef9;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 2px 8px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #131416; --surface: #1c1d20; --text: #ebebec; --muted: #9fa2a8;
+    --border: #2f3135; --accent: #8db8e8; --dot: #3a3d42;
+    --ok: #74cf9c; --ok-bg: #16301f; --warn: #f0c46c; --warn-bg: #352a10;
+    --bad: #f2948b; --bad-bg: #3a1c19;
+    --ev: #8db8e8; --ev-bg: #182838; --in: #b8a8ec; --in-bg: #241f36;
+    --shadow: none;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+main { max-width: 52rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+h1, h2, h3, h4 { line-height: 1.25; margin: 0; }
+h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 3rem 0 1rem; }
+a { color: inherit; text-decoration: none; }
+.muted { color: var(--muted); }
+
+.report-head .eyebrow { color: var(--accent); font-weight: 600; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 .4rem; }
+.report-head h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -.02em; }
+.report-head .meta { color: var(--muted); margin: .6rem 0 0; }
+
+.summary { margin-top: 2rem; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .75rem; }
+.stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; box-shadow: var(--shadow); }
+.stat b { display: block; font-size: 1.7rem; font-weight: 650; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: .9rem; }
+.stat.ok b { color: var(--ok); } .stat.bad b { color: var(--bad); } .stat.warn b { color: var(--warn); }
+.banner { margin-top: 1rem; padding: .8rem 1rem; border-radius: 10px; }
+.banner.ok { background: var(--ok-bg); color: var(--ok); }
+.banner.bad { background: var(--bad-bg); color: var(--bad); }
+.how { color: var(--muted); font-size: .92rem; margin: 1rem 0 0; }
+
+.overview ol { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.overview li + li { border-top: 1px solid var(--border); }
+.overview a { display: grid; grid-template-columns: 2rem 1fr auto; gap: .75rem; align-items: center; padding: .75rem 1rem; }
+.overview a:hover { background: var(--ev-bg); }
+.overview .num { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .85rem; }
+.ov-head { font-weight: 500; }
+.ov-support { display: flex; align-items: center; gap: .5rem; white-space: nowrap; color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
+
+.dots { display: inline-flex; gap: 3px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dot); }
+.dot.on { background: var(--accent); }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem; box-shadow: var(--shadow); scroll-margin-top: 1rem; }
+.card-head { display: grid; grid-template-columns: auto 1fr; gap: 1rem; }
+.card-head .num { font-size: .85rem; font-weight: 600; color: var(--accent); background: var(--ev-bg); border-radius: 8px; padding: .25rem .5rem; height: fit-content; font-variant-numeric: tabular-nums; }
+.card h3 { font-size: 1.25rem; letter-spacing: -.01em; }
+.badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+.badge { display: inline-flex; align-items: center; gap: .45rem; font-size: .82rem; font-weight: 600; padding: .25rem .65rem; border-radius: 999px; }
+.badge.support { background: var(--ev-bg); color: var(--ev); }
+.badge.warn { background: var(--warn-bg); color: var(--warn); }
+.badge.bad { background: var(--bad-bg); color: var(--bad); }
+.badge.sm { font-size: .72rem; padding: .1rem .5rem; }
+.who { color: var(--muted); font-size: .88rem; margin: .5rem 0 0; }
+
+.alert { margin-top: 1rem; padding: .7rem .9rem; border-radius: 10px; font-size: .92rem; }
+.alert.warn { background: var(--warn-bg); color: var(--warn); }
+.alert.bad { background: var(--bad-bg); color: var(--bad); }
+
+.card section { margin-top: 1.5rem; }
+.card h4 { font-size: .95rem; font-weight: 600; display: flex; align-items: center; gap: .6rem; color: var(--muted); margin-bottom: .6rem; }
+.label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; padding: .15rem .5rem; border-radius: 6px; }
+.label.ev { background: var(--ev-bg); color: var(--ev); }
+.label.in { background: var(--in-bg); color: var(--in); }
+.evidence > p { margin: 0 0 1rem; }
+
+.quote { margin: 0 0 .75rem; padding: .9rem 1rem .8rem 1.1rem; border-left: 3px solid var(--ev); background: var(--bg); border-radius: 0 10px 10px 0; }
+.quote.bad { border-left-color: var(--bad); background: var(--bad-bg); }
+.quote blockquote { margin: 0; font-family: Georgia, "Iowan Old Style", "Times New Roman", serif; font-size: 1.05rem; line-height: 1.55; }
+.quote blockquote::before { content: "\201C"; } .quote blockquote::after { content: "\201D"; }
+.quote figcaption { display: flex; align-items: center; gap: .6rem; margin-top: .5rem; }
+.pid { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .03em; padding: .05rem .45rem; border-radius: 6px; background: var(--surface); border: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+.check { font-size: .8rem; font-weight: 600; }
+.check.ok { color: var(--ok); } .check.bad { color: var(--bad); }
+.check-note { margin: .4rem 0 0; font-size: .88rem; color: var(--bad); }
+
+.subsection { margin-top: 1.25rem; }
+.counterpoints { border-top: 1px dashed var(--border); padding-top: 1.1rem; }
+.label.ct { background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
+.contrast > p { margin: 0 0 .5rem; }
+.quote.counter { border-left-style: dashed; border-left-color: var(--muted); background: transparent; border: 1px solid var(--border); border-left: 3px dashed var(--muted); }
+
+.interpretation { background: var(--in-bg); border-radius: 12px; padding: 1rem 1.1rem; }
+.interpretation h4 { color: var(--in); }
+.interpretation p { margin: 0; font-style: italic; }
+
+footer h2 { margin-top: 3.5rem; }
+.participants { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .4rem; }
+.participants li { display: flex; gap: .6rem; align-items: baseline; }
+footer .muted { font-size: .82rem; word-break: break-all; }
+
+@media (max-width: 560px) {
+  main { padding-top: 2rem; }
+  .card { padding: 1.2rem; }
+  .card-head { grid-template-columns: 1fr; gap: .5rem; }
+  .card-head .num { width: fit-content; }
+  .overview a { grid-template-columns: 1.6rem 1fr; }
+  .ov-support { grid-column: 2; }
+}
+@media print {
+  body { background: #fff; }
+  .card, .stat, .overview ol { box-shadow: none; break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="report-head">
+    <p class="eyebrow">Research findings report</p>
+    <h1>Mobile interviews</h1>
+    <p class="meta">21 October 2026, 15:13 · 5 interviews · 7 findings · synthesized by claude-opus-5-5</p>
+  </header>
+
+  <section class="summary">
+    <div class="stats">
+      <div class="stat"><b>7</b><span>findings</span></div>
+      <div class="stat"><b>5</b><span>participants</span></div>
+      <div class="stat ok"><b>24/24</b><span>quotes verified</span></div>
+      <div class="stat warn"><b>2</b><span>single-source findings</span></div>
+    </div>
+    <div class="banner ok"><strong>✓ All 24 quotes verified.</strong> Each one was found word-for-word in the transcript of the participant it's credited to.</div>
+    <p class="how">
+      <span class="label ev">Evidence</span> is what participants said.
+      <span class="label in">Interpretation</span> is an AI-generated hypothesis for you to judge, not a conclusion.
+      Participant counts and quote checks are computed by code from the transcripts, not by the AI.
+    </p>
+  </section>
+
+  <section class="overview">
+    <h2>Findings at a glance</h2>
+    <ol>
+          <li>
+            <a href="#finding-1">
+              <span class="num">01</span>
+              <span class="ov-head">Mobile bookings can fail silently on poor connections, leaving users unsure whether a slot is theirs and leading to on-site conflicts</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/5</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-2">
+              <span class="num">02</span>
+              <span class="ov-head">Time slots on the mobile calendar are too small to tap accurately, causing mis-bookings</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/5</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-3">
+              <span class="num">03</span>
+              <span class="ov-head">Booked equipment often sits unused, and there is no check-in to release no-show slots</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/5</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-4">
+              <span class="num">04</span>
+              <span class="ov-head">Email notifications are missed; some users want phone push notifications instead</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/5</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-5">
+              <span class="num">05</span>
+              <span class="ov-head">Approving bookings on a phone is slow for PIs, which delays students&#x27; work</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                1/5 <span class="badge warn sm">Single source</span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-6">
+              <span class="num">06</span>
+              <span class="ov-head">Some users keep the phone for quick checks and do complex tasks on desktop, while others depend on mobile entirely</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></span>
+                3/5</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-7">
+              <span class="num">07</span>
+              <span class="ov-head">Desktop users want to see several instruments side by side to plan sequential bookings</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                1/5 <span class="badge warn sm">Single source</span></span>
+            </a>
+          </li>
+    </ol>
+  </section>
+
+  <section class="findings">
+    <h2>Findings</h2>
+    
+    <article class="card" id="finding-1">
+      <header class="card-head">
+        <span class="num">01</span>
+        <div>
+          <h3>Mobile bookings can fail silently on poor connections, leaving users unsure whether a slot is theirs and leading to on-site conflicts</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 5 participants</span></div>
+          <p class="who">Supported by M01, M02</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>M01 tried to book the analyser from a field site with weak signal. The page loaded slowly, the confirm action spun without resolving, and they later found the booking had not saved and someone else had the instrument after they had driven back early. They asked for a clear confirmation or error message, or a text confirming the booking. M02, a technician, said that twice this term a booking made by phone did not save properly and two people turned up for the same slot. In one case the screenshot offered as proof showed the screen before confirmation. M02 said they had to settle these conflicts with a judgement call.</p>
+        
+        <figure class="quote ok">
+          <blockquote>The page took about a minute to load, and then when I hit &quot;confirm&quot; it just spun and spun. I had no idea if it worked.</blockquote>
+          <figcaption>
+            <span class="pid" title="PhD student (3rd year), field ecology lab; splits time between field sites and the lab">M01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Twice this term, someone booked from their phone, the booking didn&#x27;t save properly, and they turned up to find another person on the instrument.</blockquote>
+          <figcaption>
+            <span class="pid" title="Instrument technician, university mass spectrometry facility">M02</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Tell me clearly whether my booking actually went through. That&#x27;s all I need from the field.</blockquote>
+          <figcaption>
+            <span class="pid" title="PhD student (3rd year), field ecology lab; splits time between field sites and the lab">M01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+        <div class="subsection counterpoints">
+          <h4><span class="label ct">Contrasting views</span> Participants who disagreed or saw it differently</h4>
+          <div class="contrast">
+            <p><span class="pid">M04</span> M04&#x27;s one booking conflict was caused by a maintenance window added after booking, not by mobile use.</p>
+            
+        <figure class="quote ok counter">
+          <blockquote>Once, but that was a maintenance window that got added after I&#x27;d booked, and I didn&#x27;t see the email. Not a mobile thing.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, university structural biology lab">M04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+          </div>
+        </div>
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>The mobile flow may not clearly show whether a booking succeeded, failed or is still pending when the connection is unreliable. Users may then treat a pre-confirmation screen as a completed booking. Explicit success and failure states, and possibly a confirmation sent through a separate channel, could reduce lost slots and disputes that technicians currently have to settle by hand.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-2">
+      <header class="card-head">
+        <span class="num">02</span>
+        <div>
+          <h3>Time slots on the mobile calendar are too small to tap accurately, causing mis-bookings</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 5 participants</span></div>
+          <p class="who">Supported by M01, M05</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>M05 books only on their phone because they don&#x27;t bring a laptop to the lab. They said they usually tap the wrong slot and have to cancel and rebook, and now zoom in a long way before tapping. They asked for bigger buttons and a &#x27;book next free slot&#x27; option, and named bigger slots as their one change. M01 described the mobile calendar as the desktop calendar shrunk down and said they turn the phone sideways to cope.</p>
+        
+        <figure class="quote ok">
+          <blockquote>I had to zoom in to find the right half hour, and the first time I tapped I got the slot below, so I had to cancel and do it again.</blockquote>
+          <figcaption>
+            <span class="pid" title="Undergraduate summer research student, university chemistry lab">M05</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Most times, honestly. The slots are so thin.</blockquote>
+          <figcaption>
+            <span class="pid" title="Undergraduate summer research student, university chemistry lab">M05</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>The calendar is the desktop calendar shrunk down, so each hour is a tiny strip.</blockquote>
+          <figcaption>
+            <span class="pid" title="PhD student (3rd year), field ecology lab; splits time between field sites and the lab">M01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+        <div class="subsection counterpoints">
+          <h4><span class="label ct">Contrasting views</span> Participants who disagreed or saw it differently</h4>
+          <div class="contrast">
+            <p><span class="pid">M04</span> M04 agreed the slots are small but said booking should not happen on a phone at all, and would rather effort went into the desktop version.</p>
+            
+        <figure class="quote ok counter">
+          <blockquote>I don&#x27;t think booking is something you should be doing on a phone anyway.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, university structural biology lab">M04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+          </div>
+        </div>
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>The mobile calendar may be a scaled-down desktop layout rather than one designed for touch. This could hit hardest users who have no practical desktop access, such as people at the bench or in the field. Users disagree about whether mobile booking should be a priority, which suggests that improving it should not come at the expense of desktop users.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-3">
+      <header class="card-head">
+        <span class="num">03</span>
+        <div>
+          <h3>Booked equipment often sits unused, and there is no check-in to release no-show slots</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 5 participants</span></div>
+          <p class="who">Supported by M02, M05</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>M02 said people book the mass spec for whole mornings and don&#x27;t turn up, and estimated, without having counted, that about one in five morning slots go unused. M02 had mounted a wall tablet hoping people would check in on it, but LabLoop has no check-in feature. They suggested tapping &#x27;I&#x27;m here&#x27; within fifteen minutes or scanning a QR code on each instrument, and said a check-in record would also help with conflicts. M05 said the rotavap sometimes shows as booked with nobody there, but they don&#x27;t feel able to use it in case the person returns.</p>
+        
+        <figure class="quote ok">
+          <blockquote>People book the mass spec for a whole morning and don&#x27;t turn up.</blockquote>
+          <figcaption>
+            <span class="pid" title="Instrument technician, university mass spectrometry facility">M02</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>If they had to tap &quot;I&#x27;m here&quot; on the tablet within fifteen minutes, we could release the slot.</blockquote>
+          <figcaption>
+            <span class="pid" title="Instrument technician, university mass spectrometry facility">M02</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Sometimes the rotavap shows booked and nobody&#x27;s there. I don&#x27;t feel like I can just use it, though, in case they&#x27;re about to come back.</blockquote>
+          <figcaption>
+            <span class="pid" title="Undergraduate summer research student, university chemistry lab">M05</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Without a way to confirm attendance, booked-but-empty slots cannot be released, and other users may hold back rather than risk taking someone&#x27;s slot. A phone- or tablet-based check-in that releases slots automatically might recover lost instrument time. It could also create an attendance record that helps resolve disputes.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-4">
+      <header class="card-head">
+        <span class="num">04</span>
+        <div>
+          <h3>Email notifications are missed; some users want phone push notifications instead</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 5 participants</span></div>
+          <p class="who">Supported by M01, M05</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>M01 said they don&#x27;t check email in the field but do see their lock screen, and would prefer push notifications. M05 said they get about ten LabLoop emails a day, mostly about other people&#x27;s bookings, stopped reading them, and missed a cancellation of their own booking as a result.</p>
+        
+        <figure class="quote ok">
+          <blockquote>I&#x27;d love push notifications on my phone instead of emails, because in the field I&#x27;m not checking email but I do see my lock screen.</blockquote>
+          <figcaption>
+            <span class="pid" title="PhD student (3rd year), field ecology lab; splits time between field sites and the lab">M01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Maybe ten a day? Most of them are about other people&#x27;s bookings. I&#x27;ve missed a cancellation of my own because it was buried in there.</blockquote>
+          <figcaption>
+            <span class="pid" title="Undergraduate summer research student, university chemistry lab">M05</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+        <div class="subsection counterpoints">
+          <h4><span class="label ct">Contrasting views</span> Participants who disagreed or saw it differently</h4>
+          <div class="contrast">
+            <p><span class="pid">M04</span> M04 turned most notifications off and prefers to check the calendar directly.</p>
+            
+        <figure class="quote ok counter">
+          <blockquote>I turned most of them off. I check the calendar myself.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, university structural biology lab">M04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+          </div>
+        </div>
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>The volume and channel of notifications may be burying the messages users actually need, such as changes to their own bookings. Push notifications and more selective, user-relevant alerts could help. Since some users opt out entirely, notification preferences probably need to stay configurable.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-5">
+      <header class="card-head">
+        <span class="num">05</span>
+        <div>
+          <h3>Approving bookings on a phone is slow for PIs, which delays students&#x27; work</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>1 of 5 participants</span><span class="badge warn">⚑ Single source</span></div>
+          <p class="who">Supported by M03</p>
+        </div>
+      </header>
+      <div class="alert warn"><strong>Single-participant finding.</strong> Only one person raised this. Treat it as a lead to explore, not a pattern.</div>
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>M03 approves overnight runs on two instruments, usually by phone while travelling or in meetings. The approval email link leads to a full login, and the approvals page is hidden in a menu on mobile. Each approval takes two or three minutes. Delays mean students lose a day, and students have messaged M03&#x27;s personal phone asking for approval. M03 asked for a one-tap approve button in the email or notification.</p>
+        
+        <figure class="quote ok">
+          <blockquote>It takes me two or three minutes each time, which doesn&#x27;t sound like much, but it&#x27;s always at an inconvenient moment.</blockquote>
+          <figcaption>
+            <span class="pid" title="Principal investigator, university biophysics lab (7 people)">M03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>The student can&#x27;t start their overnight run, so they lose a day.</blockquote>
+          <figcaption>
+            <span class="pid" title="Principal investigator, university biophysics lab (7 people)">M03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>An approve button in the email or the notification. One tap. I trust my students, I just need to say yes.</blockquote>
+          <figcaption>
+            <span class="pid" title="Principal investigator, university biophysics lab (7 people)">M03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>The approval flow may be built around desktop navigation, while approvers mostly act from a phone between other commitments. One-tap approval from the notification itself could cut delays for students and approvers alike. This is single-source, so it is worth checking with other approvers.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-6">
+      <header class="card-head">
+        <span class="num">06</span>
+        <div>
+          <h3>Some users keep the phone for quick checks and do complex tasks on desktop, while others depend on mobile entirely</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></span>3 of 5 participants</span></div>
+          <p class="who">Supported by M02, M03, M04</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>M02 said the phone is fine for quick checks but goes to a desk to change maintenance windows because the phone version hides options. M04 plans and books the week on a laptop and uses the phone to check today&#x27;s bookings or to cancel, which they found works fine. M03 uses a laptop for utilisation and cost reports and said they don&#x27;t need those on mobile.</p>
+        
+        <figure class="quote ok">
+          <blockquote>For quick checks it&#x27;s fine. For anything like changing a maintenance window, I go to my desk. The phone version hides half the options.</blockquote>
+          <figcaption>
+            <span class="pid" title="Instrument technician, university mass spectrometry facility">M02</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Mostly to check what&#x27;s on today, or to cancel something if an experiment fails. For that it&#x27;s perfectly fine.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, university structural biology lab">M04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>For anything like utilisation or cost I use my laptop. I don&#x27;t need that on mobile.</blockquote>
+          <figcaption>
+            <span class="pid" title="Principal investigator, university biophysics lab (7 people)">M03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+        <div class="subsection counterpoints">
+          <h4><span class="label ct">Contrasting views</span> Participants who disagreed or saw it differently</h4>
+          <div class="contrast">
+            <p><span class="pid">M05</span> M05 books exclusively on their phone because there is nowhere safe for a laptop in the lab.</p>
+            
+        <figure class="quote ok counter">
+          <blockquote>Always on my phone. I don&#x27;t bring my laptop to the lab because there&#x27;s nowhere safe to put it near the benches.</blockquote>
+          <figcaption>
+            <span class="pid" title="Undergraduate summer research student, university chemistry lab">M05</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+          </div>
+          <div class="contrast">
+            <p><span class="pid">M01</span> M01 relies mainly on the phone because they spend half the week at remote field sites.</p>
+            
+        <figure class="quote ok counter">
+          <blockquote>Mostly from my phone, because half the week I&#x27;m at a field site two hours from campus.</blockquote>
+          <figcaption>
+            <span class="pid" title="PhD student (3rd year), field ecology lab; splits time between field sites and the lab">M01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+          </div>
+        </div>
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>How much people need mobile may depend on their role and setting. Desk-based users may need only lightweight mobile tasks, while bench and field users may need full booking on mobile. Prioritising mobile work around those who depend on it could avoid over-investing in mobile features that desk-based users don&#x27;t want.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-7">
+      <header class="card-head">
+        <span class="num">07</span>
+        <div>
+          <h3>Desktop users want to see several instruments side by side to plan sequential bookings</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>1 of 5 participants</span><span class="badge warn">⚑ Single source</span></div>
+          <p class="who">Supported by M04</p>
+        </div>
+      </header>
+      <div class="alert warn"><strong>Single-participant finding.</strong> Only one person raised this. Treat it as a lead to explore, not a pattern.</div>
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>M04 often needs one instrument followed straight after by another, and has to flip between two calendars to line them up. Viewing several instruments side by side was the one change they asked for.</p>
+        
+        <figure class="quote ok">
+          <blockquote>Seeing more than one instrument at a time. I often need the crystallisation robot and then the imager straight after, and I have to flip between two calendars to line them up.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, university structural biology lab">M04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Let me view several instruments side by side on desktop.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, university structural biology lab">M04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Workflows that chain instruments may not be well supported by one-calendar-at-a-time views. A multi-instrument view could make planning easier for users who book in batches. This is single-source and comes from a user who explicitly prioritises desktop over mobile.</p>
+      </section>
+    </article>
+  </section>
+
+  <footer>
+    <h2>Participants</h2>
+    <ul class="participants"><li><span class="pid">M01</span> PhD student (3rd year), field ecology lab; splits time between field sites and the lab</li><li><span class="pid">M02</span> Instrument technician, university mass spectrometry facility</li><li><span class="pid">M03</span> Principal investigator, university biophysics lab (7 people)</li><li><span class="pid">M04</span> Postdoctoral researcher, university structural biology lab</li><li><span class="pid">M05</span> Undergraduate summer research student, university chemistry lab</li></ul>
+    <p class="muted">Source folder: mobile_interviews</p>
+  </footer>
+</main>
+</body>
+</html>

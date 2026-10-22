@@ -1,0 +1,25 @@
+Participant ID: M05
+Role: Undergraduate summer research student, university chemistry lab
+Time using LabLoop: about 4 months
+Interview date: 2026-10-16
+Interviewer: R. Okafor
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for joining. How do you usually book equipment?
+M05: Always on my phone. I don't bring my laptop to the lab because there's nowhere safe to put it near the benches.
+Interviewer: Tell me about the last booking you made.
+M05: This morning, the rotary evaporator. I had to zoom in to find the right half hour, and the first time I tapped I got the slot below, so I had to cancel and do it again.
+Interviewer: Does that happen often?
+M05: Most times, honestly. The slots are so thin. I've started zooming in really far before I tap anything.
+Interviewer: Is there an app?
+M05: No, I looked. I just use the website in my browser. I saved it to my home screen, but it's still the website.
+Interviewer: What would you want from an app?
+M05: Mainly bigger buttons and a "book next free slot" option. And notifications on my phone. Right now I get emails, and I don't really read emails from LabLoop because there are so many.
+Interviewer: How many do you get?
+M05: Maybe ten a day? Most of them are about other people's bookings. I've missed a cancellation of my own because it was buried in there.
+Interviewer: Have you noticed anything about how other people use the equipment?
+M05: Sometimes the rotavap shows booked and nobody's there. I don't feel like I can just use it, though, in case they're about to come back.
+Interviewer: If you could change one thing, what would it be?
+M05: Make the slots bigger on a phone. That's where I book.
+Interviewer: Thank you so much.
+M05: Thanks!

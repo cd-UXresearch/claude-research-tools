@@ -1,0 +1,27 @@
+Participant ID: O02
+Role: Lab manager, university genetics lab (14 people, high turnover of students)
+Time using LabLoop: about 4 years
+Interview date: 2026-10-02
+Interviewer: R. Okafor
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for making the time. How are you involved when new people join the lab?
+O02: I'm the one who onboards everyone. We get maybe eight new people a year, students, rotation students, visiting researchers. I set up their accounts, book their training, and walk them through how we do things.
+Interviewer: How does LabLoop fit into that?
+O02: I add them to our lab group in LabLoop and then I have to go instrument by instrument and grant permissions once they've done the training. It's a lot of clicking. There's no way to say "this person has done the standard training package, give them these six instruments."
+Interviewer: How long does that take?
+O02: Maybe twenty minutes per person, if I remember everything. The problem is when I forget one, and then they come to me a week later saying they can't book the PCR machine.
+Interviewer: Some new users have told us the "not authorised" message is confusing. What do you think?
+O02: I've heard that. But honestly, I think it's fine that LabLoop doesn't explain everything. Onboarding is the lab's job, not the software's. Every lab has its own rules. I'd rather new people come and talk to me than have the software give them some generic message that might be wrong for our lab.
+Interviewer: Tell me more about that.
+O02: If LabLoop says "contact the facility" but actually in our lab you should come to me first, that's worse. I want people to come to a human. That's how they learn the culture.
+Interviewer: Is there anything you'd want from LabLoop for onboarding, then?
+O02: Bulk actions. Add a person, tick a role, done. And a checklist I can see, so I know who's done which training and who hasn't. Right now I keep that in a spreadsheet next to LabLoop, which is exactly the double handling I hoped to avoid.
+Interviewer: What about when people leave?
+O02: That's the other side. Students finish and their accounts just sit there with all their permissions. I found someone last month who left two years ago and could still book the ultracentrifuge.
+Interviewer: How did you feel about that?
+O02: Alarmed, frankly. That machine is dangerous if you don't know what you're doing.
+Interviewer: If you could change one thing, what would it be?
+O02: Roles. Let me give someone a whole bundle of permissions in one go, and take them away in one go.
+Interviewer: Thank you.
+O02: You're welcome.

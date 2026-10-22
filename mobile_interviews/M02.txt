@@ -1,0 +1,25 @@
+Participant ID: M02
+Role: Instrument technician, university mass spectrometry facility
+Time using LabLoop: about 3 years
+Interview date: 2026-10-13
+Interviewer: M. Lindqvist
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for talking with us. How does mobile come into your work?
+M02: I'm walking around the facility all day, so I mostly check LabLoop on my phone or on a tablet we've mounted on the wall by the instruments.
+Interviewer: Tell me about the wall tablet.
+M02: We put it up so people could see the day's schedule at a glance. It works okay for that. But what I really wanted was for people to check in on it when they arrive. LabLoop doesn't have check-in, so it's just a display.
+Interviewer: Why did you want check-in?
+M02: Unused bookings. People book the mass spec for a whole morning and don't turn up. If they had to tap "I'm here" on the tablet within fifteen minutes, we could release the slot. Even a QR code on each instrument you scan with your phone would do it.
+Interviewer: How often are bookings unused?
+M02: I'd guess one in five morning slots, though I haven't counted properly.
+Interviewer: Has mobile booking caused any other problems?
+M02: Booking conflicts, yes. Twice this term, someone booked from their phone, the booking didn't save properly, and they turned up to find another person on the instrument. Both people were sure they had the slot. One of them had a screenshot of the booking screen, but it was the screen before confirming.
+Interviewer: How did you resolve those?
+M02: I just made a judgement call. It's not a nice position to be in.
+Interviewer: What about using LabLoop on your phone yourself?
+M02: For quick checks it's fine. For anything like changing a maintenance window, I go to my desk. The phone version hides half the options.
+Interviewer: If you could change one thing, what would it be?
+M02: Check-in from the phone or the tablet. That would fix the no-shows and help with conflicts too, because there'd be a record of who actually turned up.
+Interviewer: Thank you so much.
+M02: Thank you.

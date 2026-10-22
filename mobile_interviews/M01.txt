@@ -1,0 +1,25 @@
+Participant ID: M01
+Role: PhD student (3rd year), field ecology lab; splits time between field sites and the lab
+Time using LabLoop: about 2 years
+Interview date: 2026-10-12
+Interviewer: R. Okafor
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for joining. How do you use LabLoop day to day?
+M01: Mostly from my phone, because half the week I'm at a field site two hours from campus. I book the drying ovens and the elemental analyser for when I'm back with samples.
+Interviewer: Tell me about the last time you booked from the field.
+M01: Last Thursday. I was standing in a wetland with one bar of signal. The page took about a minute to load, and then when I hit "confirm" it just spun and spun. I had no idea if it worked.
+Interviewer: Had it worked?
+M01: No. I found out when I got back on Monday and someone else had the analyser. I'd driven back early specifically to run my samples.
+Interviewer: How did that feel?
+M01: Really frustrating. Samples from the field don't keep forever. If it had just told me "this didn't save," I could have called someone.
+Interviewer: What would help in that situation?
+M01: A clear confirmation, or an error. Even a text message saying "booking confirmed." Right now there's no way to know on a bad connection.
+Interviewer: How is the mobile layout itself?
+M01: Small. The calendar is the desktop calendar shrunk down, so each hour is a tiny strip. I've learned to turn my phone sideways, which helps a bit.
+Interviewer: Do you use the notifications?
+M01: I'd love push notifications on my phone instead of emails, because in the field I'm not checking email but I do see my lock screen.
+Interviewer: If you could change one thing, what would it be?
+M01: Tell me clearly whether my booking actually went through. That's all I need from the field.
+Interviewer: Thank you.
+M01: Cheers.

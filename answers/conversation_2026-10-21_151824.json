@@ -1,0 +1,1254 @@
+{
+  "started": "2026-10-21T15:18:24",
+  "model": "claude-opus-5-5",
+  "studies": [
+    {
+      "id": "sample_transcripts",
+      "name": "Sample transcripts",
+      "report": "findings_2026-10-21_135950.json"
+    },
+    {
+      "id": "onboarding_interviews",
+      "name": "Onboarding interviews",
+      "report": "findings_2026-10-21_151218.json"
+    },
+    {
+      "id": "mobile_interviews",
+      "name": "Mobile interviews",
+      "report": "findings_2026-10-21_151339.json"
+    }
+  ],
+  "turns": [
+    {
+      "question": "What do we know about booking conflicts?",
+      "asked": "2026-10-21T15:18:43",
+      "answer": {
+        "coverage": "partly_covered",
+        "summary": "Across all three studies, booking conflicts have several separate causes. In each case at most 2 participants per study raised it: near-simultaneous double bookings, mobile bookings that fail without telling the user, back-to-back bookings with no setup buffer or rule enforcement, and maintenance windows added after a slot was booked. Facility technicians end up settling these disputes by hand, and they see it as a trust problem. Related problems include ghost bookings (slots booked but not used) and clashes with personal calendars. We know little about how often conflicts happen or what causes them technically.",
+        "points": [
+          {
+            "text": "Near-simultaneous double bookings: one core facility technician (P04, a single source in Sample transcripts) reported two double bookings on the cell sorter in the past month. Two people booked at almost the same moment and both turned up. P04 had to pick who got the slot, felt it made them look biased, and named this as the one thing to change. An earlier AI interpretation guessed it could be a concurrency bug. That is a hypothesis, not something confirmed.",
+            "finding_ids": [
+              "sample_transcripts/F06"
+            ],
+            "quotes": [
+              {
+                "finding_id": "sample_transcripts/F06",
+                "participant_id": "P04",
+                "quote": "Double bookings when two people book at almost the same moment. It's rare, but it's happened twice in the past month on the cell sorter, and both people showed up thinking they had the slot."
+              },
+              {
+                "finding_id": "sample_transcripts/F06",
+                "participant_id": "P04",
+                "quote": "Stop the double bookings. That's a trust thing. If people can't trust the booking, the whole system falls apart."
+              }
+            ]
+          },
+          {
+            "text": "Mobile bookings that fail without an error (2 of 5 in Mobile interviews): on a weak connection the confirm action can spin without finishing. The booking doesn't save, and two people turn up for the same slot. A technician (M02) said this happened twice this term and that they settle these cases with a judgement call. In one case the screenshot offered as proof showed the screen from before confirmation. M01 asked for a clear success or failure message. Contrasting view: M04's only conflict came from a maintenance window, not from using a phone.",
+            "finding_ids": [
+              "mobile_interviews/F01"
+            ],
+            "quotes": [
+              {
+                "finding_id": "mobile_interviews/F01",
+                "participant_id": "M02",
+                "quote": "Twice this term, someone booked from their phone, the booking didn't save properly, and they turned up to find another person on the instrument."
+              },
+              {
+                "finding_id": "mobile_interviews/F01",
+                "participant_id": "M01",
+                "quote": "Tell me clearly whether my booking actually went through. That's all I need from the field."
+              }
+            ]
+          },
+          {
+            "text": "Maintenance windows added after a booking can cause conflicts when the user misses the notification email (M04, contrasting view in mobile_interviews/F01). Separately, 2 of 6 in Sample transcripts said scheduled maintenance blocking works well and prevents disputes over times when an instrument isn't available.",
+            "finding_ids": [
+              "mobile_interviews/F01",
+              "sample_transcripts/F09"
+            ],
+            "quotes": [
+              {
+                "finding_id": "mobile_interviews/F01",
+                "participant_id": "M04",
+                "quote": "Once, but that was a maintenance window that got added after I'd booked, and I didn't see the email. Not a mobile thing."
+              },
+              {
+                "finding_id": "sample_transcripts/F09",
+                "participant_id": "P04",
+                "quote": "That's my favourite feature by a mile. It saves me from having to argue with people about why they can't book Monday at eight."
+              }
+            ]
+          },
+          {
+            "text": "Booking rules and setup buffers aren't enforced (2 of 6 in Onboarding interviews). LabLoop allows back-to-back bookings with no buffer, but the cell sorter needs 30 minutes of setup. A training coordinator said this causes conflicts every couple of weeks, mostly with newer users. Unwritten limits, such as 4 hours a day on the confocal, aren't shown when someone books.",
+            "finding_ids": [
+              "onboarding_interviews/F08"
+            ],
+            "quotes": [
+              {
+                "finding_id": "onboarding_interviews/F08",
+                "participant_id": "O04",
+                "quote": "LabLoop lets two bookings sit back to back with no buffer."
+              },
+              {
+                "finding_id": "onboarding_interviews/F08",
+                "participant_id": "O01",
+                "quote": "If there's a rule, the system could just tell me when I'm booking. Or stop me."
+              }
+            ]
+          },
+          {
+            "text": "Tapping the wrong slot on mobile (2 of 5 in Mobile interviews): thin time slots lead to mis-bookings that have to be cancelled and rebooked. This finding describes self-inflicted errors, not clashes with other people.",
+            "finding_ids": [
+              "mobile_interviews/F02"
+            ],
+            "quotes": [
+              {
+                "finding_id": "mobile_interviews/F02",
+                "participant_id": "M05",
+                "quote": "I had to zoom in to find the right half hour, and the first time I tapped I got the slot below, so I had to cancel and do it again."
+              }
+            ]
+          },
+          {
+            "text": "Related problem, ghost bookings: slots that are booked but unused block other people (4 of 6 in Sample transcripts; 2 of 5 in Mobile interviews). Junior users don't feel able to use an empty booked slot. M02 suggested that a check-in record would also help resolve conflicts. Contrasting views: a PI (P03) worried that auto-cancelling would add stress, and a small startup (P05) said it isn't a problem for them.",
+            "finding_ids": [
+              "sample_transcripts/F01",
+              "mobile_interviews/F03"
+            ],
+            "quotes": [
+              {
+                "finding_id": "mobile_interviews/F03",
+                "participant_id": "M05",
+                "quote": "Sometimes the rotavap shows booked and nobody's there. I don't feel like I can just use it, though, in case they're about to come back."
+              },
+              {
+                "finding_id": "sample_transcripts/F01",
+                "participant_id": "P03",
+                "quote": "If we started auto-cancelling slots I think we'd create more stress, not less."
+              }
+            ]
+          },
+          {
+            "text": "Clashes with personal schedules: with no calendar integration (4 of 6 in Sample transcripts), users check LabLoop and their own calendars by hand to avoid booking themselves into two things at once, such as an instrument slot and a seminar.",
+            "finding_ids": [
+              "sample_transcripts/F04"
+            ],
+            "quotes": [
+              {
+                "finding_id": "sample_transcripts/F04",
+                "participant_id": "P02",
+                "quote": "I end up typing my bookings into my calendar by hand so I don't double-book myself with seminars."
+              }
+            ]
+          }
+        ],
+        "gaps": "The evidence on double booking itself is thin. The near-simultaneous case comes from one participant, and the mobile save-failure case from 2 of 5. We have no data on how often conflicts happen beyond these few reports, and no confirmed technical cause. We also don't know how users other than technicians feel when they lose a disputed slot, or how widespread this is across different kinds of facility. Nobody looked at how conflicts are resolved beyond technicians making judgement calls. Our evidence is all interview reports, with no system logs to back them up.",
+        "suggested_research": [
+          "Analyse booking logs for overlapping bookings to measure how often they happen, and whether they come from concurrent requests, mobile save failures or edits made after booking.",
+          "Interview more shared core facility staff and users about how conflicts get resolved and how that affects trust in the system.",
+          "Test clearer booking confirmation states (success, pending, failed) on mobile under poor network conditions.",
+          "Explore per-instrument rules (setup buffers, maximum duration) and check-in records as ways to prevent and settle conflicts, including how PIs react to them."
+        ]
+      },
+      "tool_log": [
+        {
+          "tool": "list_studies",
+          "input": {},
+          "summary": "3 studies, 30 findings"
+        },
+        {
+          "tool": "search_findings",
+          "input": {
+            "query": "booking conflict"
+          },
+          "summary": "10 matching findings"
+        },
+        {
+          "tool": "search_findings",
+          "input": {
+            "query": "double booking clash overlap"
+          },
+          "summary": "10 matching findings"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "sample_transcripts/F06"
+          },
+          "summary": "Near-simultaneous bookings can create double bookings that damage trus (1 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "mobile_interviews/F01"
+          },
+          "summary": "Mobile bookings can fail silently on poor connections, leaving users u (2 of 5 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "sample_transcripts/F04"
+          },
+          "summary": "Lack of calendar integration forces users to check two places or re-en (4 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "onboarding_interviews/F08"
+          },
+          "summary": "Booking rules and instrument constraints are not communicated or enfor (2 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "mobile_interviews/F03"
+          },
+          "summary": "Booked equipment often sits unused, and there is no check-in to releas (2 of 5 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "mobile_interviews/F02"
+          },
+          "summary": "Time slots on the mobile calendar are too small to tap accurately, cau (2 of 5 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "sample_transcripts/F01"
+          },
+          "summary": "Booked-but-unused slots ('no-shows' or 'ghost bookings') block others  (4 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "sample_transcripts/F09"
+          },
+          "summary": "Maintenance blocking is a well-liked feature for instrument owners (2 of 6 participants)"
+        }
+      ],
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 3260,
+        "cache_read_input_tokens": 20541
+      },
+      "checks": {
+        "points": [
+          {
+            "findings": [
+              {
+                "finding_id": "sample_transcripts/F06",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F06."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F06."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "mobile_interviews/F01",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F01."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F01."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "mobile_interviews/F01",
+                "ok": true
+              },
+              {
+                "finding_id": "sample_transcripts/F09",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F01."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F09."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "onboarding_interviews/F08",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F08."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F08."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "mobile_interviews/F02",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F02."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "sample_transcripts/F01",
+                "ok": true
+              },
+              {
+                "finding_id": "mobile_interviews/F03",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F03."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F01."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "sample_transcripts/F04",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F04."
+              }
+            ]
+          }
+        ],
+        "failures": 0,
+        "total": 21
+      }
+    },
+    {
+      "question": "What did users say about using LabLoop on their phones?",
+      "asked": "2026-10-21T15:19:27",
+      "answer": {
+        "coverage": "covered",
+        "summary": "People's views on using LabLoop on a phone split by role and where they work. Bench and field users (students, field researchers) depend on the phone for booking. For them it's fiddly: thin time slots cause wrong-slot bookings, and on weak connections bookings can fail without any error. Desk-based users mainly use the phone for quick checks and cancellations, and they say it works fine for that. Other complaints were missed email notifications (some want push notifications instead) and a slow approval flow for PIs, which comes from one participant.",
+        "points": [
+          {
+            "text": "Hard to tap the right slot, causing wrong-slot bookings: 2 of 6 participants in Sample transcripts and 2 of 5 in Mobile interviews said the mobile calendar is the desktop layout shrunk down. Slots are too thin to tap accurately, so people zoom in, book the wrong hour, and have to cancel and rebook. Contrasting views: P05 has had no trouble and thinks a big phone may help. M04 agrees the slots are small but thinks booking shouldn't be done on a phone at all.",
+            "finding_ids": [
+              "sample_transcripts/F03",
+              "mobile_interviews/F02"
+            ],
+            "quotes": [
+              {
+                "finding_id": "sample_transcripts/F03",
+                "participant_id": "P02",
+                "quote": "The mobile site is just the desktop site shrunk down. I have to pinch and zoom to hit the right time slot, and twice I've booked the wrong hour because my thumb landed on the row below."
+              },
+              {
+                "finding_id": "mobile_interviews/F02",
+                "participant_id": "M05",
+                "quote": "Most times, honestly. The slots are so thin."
+              },
+              {
+                "finding_id": "sample_transcripts/F03",
+                "participant_id": "P05",
+                "quote": "I haven't had any trouble. I've got a big phone, maybe that helps."
+              },
+              {
+                "finding_id": "mobile_interviews/F02",
+                "participant_id": "M04",
+                "quote": "I don't think booking is something you should be doing on a phone anyway."
+              }
+            ]
+          },
+          {
+            "text": "Bookings can fail without an error on poor connections (2 of 5 in Mobile interviews). The confirm action spins without finishing, the booking doesn't save, and two people end up at the instrument for the same slot. Users want a clear confirmation or error message.",
+            "finding_ids": [
+              "mobile_interviews/F01"
+            ],
+            "quotes": [
+              {
+                "finding_id": "mobile_interviews/F01",
+                "participant_id": "M01",
+                "quote": "The page took about a minute to load, and then when I hit \"confirm\" it just spun and spun. I had no idea if it worked."
+              },
+              {
+                "finding_id": "mobile_interviews/F01",
+                "participant_id": "M01",
+                "quote": "Tell me clearly whether my booking actually went through. That's all I need from the field."
+              }
+            ]
+          },
+          {
+            "text": "How much people need mobile depends on role and setting (3 of 5 in Mobile interviews). A technician, a PI and a postdoc use the phone for quick checks or cancellations and go to a desk for more complex tasks. The technician said the phone version hides options. Contrasting views: M05 (no safe place for a laptop at the bench) and M01 (often at remote field sites) rely mainly or entirely on the phone. In Sample transcripts, P02 named mobile as the one thing to change.",
+            "finding_ids": [
+              "mobile_interviews/F06",
+              "sample_transcripts/F03"
+            ],
+            "quotes": [
+              {
+                "finding_id": "mobile_interviews/F06",
+                "participant_id": "M04",
+                "quote": "Mostly to check what's on today, or to cancel something if an experiment fails. For that it's perfectly fine."
+              },
+              {
+                "finding_id": "mobile_interviews/F06",
+                "participant_id": "M02",
+                "quote": "For quick checks it's fine. For anything like changing a maintenance window, I go to my desk. The phone version hides half the options."
+              },
+              {
+                "finding_id": "mobile_interviews/F06",
+                "participant_id": "M05",
+                "quote": "Always on my phone. I don't bring my laptop to the lab because there's nowhere safe to put it near the benches."
+              },
+              {
+                "finding_id": "sample_transcripts/F03",
+                "participant_id": "P02",
+                "quote": "Make it work properly on a phone. That's where I actually am when I need it."
+              }
+            ]
+          },
+          {
+            "text": "Notifications (2 of 5 in Mobile interviews): email notifications get missed. A field researcher would rather have push notifications on the lock screen. Another user gets about ten emails a day, mostly about other people's bookings, and missed a cancellation of their own booking. Contrasting view: M04 turned most notifications off and checks the calendar directly.",
+            "finding_ids": [
+              "mobile_interviews/F04"
+            ],
+            "quotes": [
+              {
+                "finding_id": "mobile_interviews/F04",
+                "participant_id": "M01",
+                "quote": "I'd love push notifications on my phone instead of emails, because in the field I'm not checking email but I do see my lock screen."
+              },
+              {
+                "finding_id": "mobile_interviews/F04",
+                "participant_id": "M05",
+                "quote": "Maybe ten a day? Most of them are about other people's bookings. I've missed a cancellation of my own because it was buried in there."
+              }
+            ]
+          },
+          {
+            "text": "Approving bookings on a phone is slow. This comes from one PI (M03, a single source in Mobile interviews). The email link leads to a full login, and the approvals page is hidden in a menu on mobile. Each approval takes 2 to 3 minutes, and when approvals are delayed students lose a day. M03 asked for one-tap approval.",
+            "finding_ids": [
+              "mobile_interviews/F05"
+            ],
+            "quotes": [
+              {
+                "finding_id": "mobile_interviews/F05",
+                "participant_id": "M03",
+                "quote": "The student can't start their overnight run, so they lose a day."
+              },
+              {
+                "finding_id": "mobile_interviews/F05",
+                "participant_id": "M03",
+                "quote": "An approve button in the email or the notification. One tap. I trust my students, I just need to say yes."
+              }
+            ]
+          },
+          {
+            "text": "Mobile check-in idea: a technician (M02, 1 of the 2 supporters of mobile_interviews/F03) has mounted a wall tablet and suggested that tapping 'I'm here' within fifteen minutes could release no-show slots. LabLoop currently has no check-in feature.",
+            "finding_ids": [
+              "mobile_interviews/F03"
+            ],
+            "quotes": [
+              {
+                "finding_id": "mobile_interviews/F03",
+                "participant_id": "M02",
+                "quote": "If they had to tap \"I'm here\" on the tablet within fifteen minutes, we could release the slot."
+              }
+            ]
+          }
+        ],
+        "gaps": "The samples are small (2 to 3 participants per theme), and the approval finding comes from one person. We don't know whether people use a native app or the mobile website, or what devices and screen sizes they have, beyond one participant guessing that a big phone helps. There is no usage data on what share of bookings are made on mobile, and no data on how often mobile bookings fail.",
+        "suggested_research": [
+          "Run usability tests of the mobile booking flow on a range of screen sizes and under poor network conditions.",
+          "Use analytics to measure what share of bookings, cancellations and approvals happen on mobile, broken down by role.",
+          "Interview more PIs and approvers to check whether the slow mobile approval problem is widespread.",
+          "Test whether push notifications or more selective alerts reduce missed changes to users' own bookings."
+        ]
+      },
+      "tool_log": [
+        {
+          "tool": "search_findings",
+          "input": {
+            "query": "phone mobile app tablet"
+          },
+          "summary": "8 matching findings"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "sample_transcripts/F03"
+          },
+          "summary": "Booking on a phone is fiddly and error-prone for users who are rarely  (2 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "mobile_interviews/F04"
+          },
+          "summary": "Email notifications are missed; some users want phone push notificatio (2 of 5 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "mobile_interviews/F05"
+          },
+          "summary": "Approving bookings on a phone is slow for PIs, which delays students'  (1 of 5 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "mobile_interviews/F06"
+          },
+          "summary": "Some users keep the phone for quick checks and do complex tasks on des (3 of 5 participants)"
+        }
+      ],
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 2949,
+        "cache_read_input_tokens": 29650
+      },
+      "checks": {
+        "points": [
+          {
+            "findings": [
+              {
+                "finding_id": "sample_transcripts/F03",
+                "ok": true
+              },
+              {
+                "finding_id": "mobile_interviews/F02",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F03."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F02."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F03."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F02."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "mobile_interviews/F01",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F01."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F01."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "mobile_interviews/F06",
+                "ok": true
+              },
+              {
+                "finding_id": "sample_transcripts/F03",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F06."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F06."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F06."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F03."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "mobile_interviews/F04",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F04."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F04."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "mobile_interviews/F05",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F05."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F05."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "mobile_interviews/F03",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in mobile_interviews/F03."
+              }
+            ]
+          }
+        ],
+        "failures": 0,
+        "total": 23
+      }
+    },
+    {
+      "question": "Is onboarding LabLoop's job or the lab's job?",
+      "asked": "2026-10-21T15:19:59",
+      "answer": {
+        "coverage": "partly_covered",
+        "summary": "Participants disagree, and the research can't settle this for you: it's partly a product strategy decision. One lab manager (O02) said outright that onboarding is the lab's job. A core training coordinator (O04) said a human-first approach doesn't scale and asked for LabLoop to do some of the explaining. New users, with support from an admin and the coordinator, describe getting stuck when the software gives no reason or next step. Overall the evidence points to a shared role: the lab supplies its local knowledge and LabLoop at least shows it at the moment people get blocked. But that framing comes from an earlier AI interpretation, not from what participants said.",
+        "points": [
+          {
+            "text": "'Lab's job' view: one lab manager (O02, Onboarding interviews) thinks it's fine that LabLoop doesn't explain why access is refused. O02 wants new users to go to a person so they learn the lab's culture, and worries that a generic message could steer them away from the lab manager. This is one participant's view.",
+            "finding_ids": [
+              "onboarding_interviews/F01",
+              "onboarding_interviews/F09"
+            ],
+            "quotes": [
+              {
+                "finding_id": "onboarding_interviews/F01",
+                "participant_id": "O02",
+                "quote": "I think it's fine that LabLoop doesn't explain everything. Onboarding is the lab's job, not the software's."
+              },
+              {
+                "finding_id": "onboarding_interviews/F09",
+                "participant_id": "O02",
+                "quote": "I want people to come to a human. That's how they learn the culture."
+              }
+            ]
+          },
+          {
+            "text": "Human guidance works when it happens: a postdoc (O05) had a smooth start because their lab manager sent a short document with screenshots, the instruments they'd need, and who to ask for training. O05 said the software itself explains little. This finding has 2 of 6 supporters in Onboarding interviews (O05 and O02).",
+            "finding_ids": [
+              "onboarding_interviews/F09"
+            ],
+            "quotes": [
+              {
+                "finding_id": "onboarding_interviews/F09",
+                "participant_id": "O05",
+                "quote": "The document from my lab manager, really. Without it I think I'd have been as confused as some of the students. The software itself doesn't explain much, but a good human explanation filled the gap."
+              }
+            ]
+          },
+          {
+            "text": "Human-first doesn't scale for shared cores: the training coordinator of a core serving about 25 labs (O04) said they can't be the person all of roughly 120 new users a year come to. O04 needs the system to do some of the explaining.",
+            "finding_ids": [
+              "onboarding_interviews/F09"
+            ],
+            "quotes": [
+              {
+                "finding_id": "onboarding_interviews/F09",
+                "participant_id": "O04",
+                "quote": "For a lab's own equipment, maybe. For the core, with a hundred and twenty people a year, I can't be the person everyone comes to. I need the system to do some of that explaining."
+              }
+            ]
+          },
+          {
+            "text": "When the lab's guidance doesn't reach people, the software gives them a dead end. In Onboarding interviews, 3 of 6 (a new PhD student, the core coordinator and a department admin) described the 'not authorised' message giving no reason or next step. New users email IT or the wrong admin, and some ask a friend to book for them. In Sample transcripts, one undergraduate (P06, a single source) lost about a week this way.",
+            "finding_ids": [
+              "onboarding_interviews/F01",
+              "sample_transcripts/F05"
+            ],
+            "quotes": [
+              {
+                "finding_id": "onboarding_interviews/F01",
+                "participant_id": "O01",
+                "quote": "When it says I'm not authorised, tell me why and what to do. \"You need confocal training, here's how to sign up.\" That would have saved me a lot of confused emails."
+              },
+              {
+                "finding_id": "onboarding_interviews/F01",
+                "participant_id": "O06",
+                "quote": "I get a lot of emails from confused new people who can't book anything. I usually have to forward them to their lab manager or the core."
+              },
+              {
+                "finding_id": "sample_transcripts/F05",
+                "participant_id": "P06",
+                "quote": "Even one sentence saying \"you need training, contact this person\" would have saved me a week."
+              }
+            ]
+          },
+          {
+            "text": "What happens when access is blocked: 3 of 6 in Onboarding interviews described new users booking under other people's names. This makes usage records misleading and blurs who is accountable when something goes wrong.",
+            "finding_ids": [
+              "onboarding_interviews/F04"
+            ],
+            "quotes": [
+              {
+                "finding_id": "onboarding_interviews/F04",
+                "participant_id": "O03",
+                "quote": "My host booked time for me under her own name. Which worked, but then everyone thought she was using the microscope all the time, and when something went wrong it looked like it was her session."
+              }
+            ]
+          },
+          {
+            "text": "Even labs that run onboarding themselves are held back by the tool. Two of 6 in Onboarding interviews (a lab manager and the core coordinator) said granting access after training is manual and done one instrument at a time. LabLoop isn't connected to training records, which leads to spreadsheets, delays and wrong unlocks. Separately, 2 of 6 (O01 and O03) said training availability and the fact that prior training isn't recognised delayed their research.",
+            "finding_ids": [
+              "onboarding_interviews/F02",
+              "onboarding_interviews/F05"
+            ],
+            "quotes": [
+              {
+                "finding_id": "onboarding_interviews/F02",
+                "participant_id": "O04",
+                "quote": "Our training records live in the university's learning system. LabLoop doesn't know about them. So after every session, I sit with a list and manually tick people off in LabLoop. If I'm away, nobody gets unlocked."
+              },
+              {
+                "finding_id": "onboarding_interviews/F05",
+                "participant_id": "O03",
+                "quote": "I had already done the same training at my home institution, on the same model of microscope. But there was no way to record that. I had to do it again here."
+              }
+            ]
+          },
+          {
+            "text": "A possible middle ground. This is an earlier AI interpretation, a hypothesis that hasn't been tested: let each lab or core configure the 'not authorised' message with its own reason, contact or training sign-up link, and let labs attach their own guidance. The idea is that this could respect lab-led onboarding while helping cores scale. Separately, O04 did directly ask for the message to link to training sign-up.",
+            "finding_ids": [
+              "onboarding_interviews/F01",
+              "onboarding_interviews/F09"
+            ],
+            "quotes": []
+          }
+        ],
+        "gaps": "Nobody asked participants directly who should own onboarding. The 'lab's job' position comes from a single lab manager, and the scaling argument from a single core coordinator. We don't know how common each view is among lab managers, PIs or core staff. Nobody has tested whether a configurable, lab-controlled message would satisfy both sides. Which way to go is ultimately a product strategy decision that the interviews can inform but can't make.",
+        "suggested_research": [
+          "Ask lab managers, PIs and core staff directly which parts of onboarding they want to own and which they'd hand to the software.",
+          "Test a lab-configurable 'not authorised' message (reason, contact, training link) with small labs and with shared cores.",
+          "Compare how quickly new users get to their first booking, and how much support load they create, in labs with and without written onboarding guidance.",
+          "Explore whether connecting LabLoop to training records, or bundling permissions into roles, would change who people think should own onboarding."
+        ]
+      },
+      "tool_log": [
+        {
+          "tool": "search_findings",
+          "input": {
+            "query": "onboarding responsibility guidance training who"
+          },
+          "summary": "10 matching findings"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "onboarding_interviews/F09"
+          },
+          "summary": "Human-provided onboarding guidance can fill the gaps the software leav (2 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "onboarding_interviews/F01"
+          },
+          "summary": "The \"not authorised\" message gives no reason or next step, so new user (3 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "onboarding_interviews/F02"
+          },
+          "summary": "Granting instrument access after training is manual, instrument-by-ins (2 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "onboarding_interviews/F05"
+          },
+          "summary": "Training availability and the lack of recognition for prior training d (2 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "onboarding_interviews/F04"
+          },
+          "summary": "Access barriers push new users into booking under other people's names (3 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "sample_transcripts/F05"
+          },
+          "summary": "New users hit an unexplained 'not authorised' block with no guidance o (1 of 6 participants)"
+        }
+      ],
+      "usage": {
+        "input_tokens": 8,
+        "output_tokens": 3096,
+        "cache_read_input_tokens": 70174
+      },
+      "checks": {
+        "points": [
+          {
+            "findings": [
+              {
+                "finding_id": "onboarding_interviews/F01",
+                "ok": true
+              },
+              {
+                "finding_id": "onboarding_interviews/F09",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F01."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F09."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "onboarding_interviews/F09",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F09."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "onboarding_interviews/F09",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F09."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "onboarding_interviews/F01",
+                "ok": true
+              },
+              {
+                "finding_id": "sample_transcripts/F05",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F01."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F01."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F05."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "onboarding_interviews/F04",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F04."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "onboarding_interviews/F02",
+                "ok": true
+              },
+              {
+                "finding_id": "onboarding_interviews/F05",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F02."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F05."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "onboarding_interviews/F01",
+                "ok": true
+              },
+              {
+                "finding_id": "onboarding_interviews/F09",
+                "ok": true
+              }
+            ],
+            "quotes": []
+          }
+        ],
+        "failures": 0,
+        "total": 21
+      }
+    },
+    {
+      "question": "Why did users love the new calendar sync feature?",
+      "asked": "2026-10-21T15:20:31",
+      "answer": {
+        "coverage": "not_covered",
+        "summary": "The research doesn't show users loving a new calendar sync feature. None of the findings mention one existing. What participants described is the opposite: LabLoop doesn't sync with their personal calendars, and several asked for it. The findings can tell you why people want calendar sync, but not how they reacted to a released feature.",
+        "points": [
+          {
+            "text": "No calendar integration is a pain point. In Sample transcripts, 4 of 6 participants said it forces them to check LabLoop and their own calendar separately, or to copy bookings in by hand to avoid clashes such as a booking and a seminar at the same time. Both Outlook and Google Calendar users were among them. P05 named calendar sync as the one thing they would change. Contrasting view: the PI (P03) said it matters little to them because they don't do the booking.",
+            "finding_ids": [
+              "sample_transcripts/F04"
+            ],
+            "quotes": [
+              {
+                "finding_id": "sample_transcripts/F04",
+                "participant_id": "P01",
+                "quote": "It doesn't talk to my calendar. I live in Outlook. I have to look at LabLoop and then separately look at my calendar to see if I can actually make the time I booked. It's two places for one thing."
+              },
+              {
+                "finding_id": "sample_transcripts/F04",
+                "participant_id": "P02",
+                "quote": "I end up typing my bookings into my calendar by hand so I don't double-book myself with seminars."
+              },
+              {
+                "finding_id": "sample_transcripts/F04",
+                "participant_id": "P05",
+                "quote": "Calendar sync. That would save me a little bit of friction every single day."
+              },
+              {
+                "finding_id": "sample_transcripts/F04",
+                "participant_id": "P03",
+                "quote": "It doesn't matter much to me personally. I'm not the one booking."
+              }
+            ]
+          },
+          {
+            "text": "In Onboarding interviews, one participant (O05, a single source) misses the automatic sync their previous industry booking system had. They named calendar sync as their top request.",
+            "finding_ids": [
+              "onboarding_interviews/F13"
+            ],
+            "quotes": [
+              {
+                "finding_id": "onboarding_interviews/F13",
+                "participant_id": "O05",
+                "quote": "It doesn't sync with my calendar. I use Outlook, and in industry our booking system put everything in my calendar automatically. I miss that."
+              }
+            ]
+          },
+          {
+            "text": "A related request: a core facility technician (P04) wants the core's maintenance schedule to appear automatically in Outlook.",
+            "finding_ids": [
+              "sample_transcripts/F04"
+            ],
+            "quotes": []
+          }
+        ],
+        "gaps": "None of the three studies (Sample transcripts, Onboarding interviews, Mobile interviews) mentions a calendar sync feature that has been released, or anyone's reaction to one. All the evidence describes sync as missing. If the feature has shipped since these interviews, it hasn't been researched yet.",
+        "suggested_research": [
+          "If calendar sync has launched, interview users who have used it about what it changed, whether it reduced clashes and double-checking, and any problems with Outlook or Google Calendar.",
+          "Compare how much booking-related friction and self-double-booking users report before and after calendar sync.",
+          "Find out whether non-booking roles such as PIs, and small teams, value sync differently from students and facility staff."
+        ]
+      },
+      "tool_log": [
+        {
+          "tool": "search_findings",
+          "input": {
+            "query": "calendar sync integration Outlook Google"
+          },
+          "summary": "10 matching findings"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "onboarding_interviews/F13"
+          },
+          "summary": "No sync with personal calendars (1 of 6 participants)"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "sample_transcripts/F10"
+          },
+          "summary": "Small teams feel they are paying for enterprise features they don't ne (1 of 6 participants)"
+        }
+      ],
+      "usage": {
+        "input_tokens": 8,
+        "output_tokens": 1413,
+        "cache_read_input_tokens": 92825
+      },
+      "checks": {
+        "points": [
+          {
+            "findings": [
+              {
+                "finding_id": "sample_transcripts/F04",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F04."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F04."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F04."
+              },
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F04."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "onboarding_interviews/F13",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in onboarding_interviews/F13."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "sample_transcripts/F04",
+                "ok": true
+              }
+            ],
+            "quotes": []
+          }
+        ],
+        "failures": 0,
+        "total": 8
+      }
+    },
+    {
+      "question": "What do users think about LabLoop's pricing?",
+      "asked": "2026-10-21T15:20:53",
+      "answer": {
+        "coverage": "partly_covered",
+        "summary": "There's very little on pricing. Only one participant commented on price directly: a postdoc at a six-person startup (P05) feels small teams pay for big-university features they'll never use, and asked for a simpler price for small teams. One PI (P03) said proper cost reporting by grant is what justifies the subscription to their department. That's a comment about value, not about price.",
+        "points": [
+          {
+            "text": "Small teams pay for features they don't use. This is a single source (P05, 1 of 6 in Sample transcripts), a postdoc at a startup with six scientists. P05 asked for simpler pricing for small teams and gave department billing as an example of a feature built for universities that they won't use. P05 was otherwise positive: setup was quick and the product 'does what it says'.",
+            "finding_ids": [
+              "sample_transcripts/F10"
+            ],
+            "quotes": [
+              {
+                "finding_id": "sample_transcripts/F10",
+                "participant_id": "P05",
+                "quote": "Maybe a simpler price for small teams. We're paying for features built for big universities, like department billing, that we'll never use."
+              }
+            ]
+          },
+          {
+            "text": "For a university buyer, reporting justifies the cost. One PI (P03, one of 2 supporters of sample_transcripts/F07) said proper cost reporting by grant is what justifies the subscription to their department. Reporting by grant is currently unreliable because grant codes go into a free-text field. An earlier AI interpretation suggested reporting may be tied to renewal decisions. That is a hypothesis, not something participants said.",
+            "finding_ids": [
+              "sample_transcripts/F07"
+            ],
+            "quotes": [
+              {
+                "finding_id": "sample_transcripts/F07",
+                "participant_id": "P03",
+                "quote": "Proper cost reporting by grant. That's what justifies the subscription to my department."
+              }
+            ]
+          }
+        ],
+        "gaps": "None of the three studies looked at pricing directly. There's no data on price levels, willingness to pay, how pricing compares with alternatives, who makes the purchasing decision, or how renewals happen. The two comments we have come from one startup postdoc and one university PI, and both were incidental. No one in Onboarding interviews or Mobile interviews talked about pricing. The department research administrator (O06) manages accounts, but no finding records their views on cost.",
+        "suggested_research": [
+          "Interview budget holders (PIs, department administrators, core facility managers, startup leads) about perceived value, willingness to pay and what drives renewal.",
+          "Test whether tiered or modular packaging (for example, a small-team tier without department billing) appeals to small commercial labs.",
+          "Find out which features buyers use to justify the subscription internally, such as grant cost reporting, permissions or maintenance blocking."
+        ]
+      },
+      "tool_log": [
+        {
+          "tool": "search_findings",
+          "input": {
+            "query": "price pricing cost expensive subscription value"
+          },
+          "summary": "10 matching findings"
+        },
+        {
+          "tool": "search_findings",
+          "input": {
+            "query": "paying budget licence money afford"
+          },
+          "summary": "2 matching findings"
+        },
+        {
+          "tool": "get_finding",
+          "input": {
+            "finding_id": "sample_transcripts/F07"
+          },
+          "summary": "Usage and cost reporting requires manual cleanup and cannot reliably s (2 of 6 participants)"
+        }
+      ],
+      "usage": {
+        "input_tokens": 8,
+        "output_tokens": 1204,
+        "cache_read_input_tokens": 103890
+      },
+      "checks": {
+        "points": [
+          {
+            "findings": [
+              {
+                "finding_id": "sample_transcripts/F10",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F10."
+              }
+            ]
+          },
+          {
+            "findings": [
+              {
+                "finding_id": "sample_transcripts/F07",
+                "ok": true
+              }
+            ],
+            "quotes": [
+              {
+                "status": "verified",
+                "message": "Matches a verified quote in sample_transcripts/F07."
+              }
+            ]
+          }
+        ],
+        "failures": 0,
+        "total": 4
+      }
+    }
+  ]
+}

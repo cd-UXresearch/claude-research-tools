@@ -1,0 +1,25 @@
+Participant ID: O03
+Role: Visiting researcher (3-month stay), from a partner university abroad
+Time using LabLoop: about 5 weeks
+Interview date: 2026-10-03
+Interviewer: M. Lindqvist
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for talking with us. Can you tell me about your visit?
+O03: I'm here for three months to learn a new imaging technique. I'm from a partner lab, so I don't have a normal staff or student account here.
+Interviewer: How did you get into LabLoop?
+O03: That was the hard part. LabLoop wanted a university login, and I didn't have one for the first ten days because the visitor paperwork was slow. So for ten days I couldn't even see the booking calendar.
+Interviewer: What did you do in the meantime?
+O03: My host booked time for me under her own name. Which worked, but then everyone thought she was using the microscope all the time, and when something went wrong it looked like it was her session.
+Interviewer: Once you had an account, how was it?
+O03: The booking itself is easy. I use similar systems at home. I understood it in five minutes. The problem is only getting in.
+Interviewer: Did you need any training?
+O03: Yes, and I had already done the same training at my home institution, on the same model of microscope. But there was no way to record that. I had to do it again here.
+Interviewer: How did you feel about that?
+O03: A bit frustrated. I understand they want to be safe, but it cost me a week of my three months.
+Interviewer: Is there anything else about LabLoop you'd like to mention?
+O03: When my visit ends, I'm curious whether my account will just stop. Nobody has told me. I would like to know I can still download my booking history for my report.
+Interviewer: If you could change one thing, what would it be?
+O03: A guest or visitor account that a host can create on day one, with an end date. That would solve most of my problems.
+Interviewer: Thank you very much.
+O03: Thank you.

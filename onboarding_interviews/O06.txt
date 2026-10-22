@@ -1,0 +1,23 @@
+Participant ID: O06
+Role: Department research administrator (manages LabLoop accounts for 9 labs)
+Time using LabLoop: about 3 years
+Interview date: 2026-10-08
+Interviewer: M. Lindqvist
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for joining. What's your role with LabLoop?
+O06: I'm the department admin, so I create accounts for new people across nine labs and deal with billing. At the start of term I might add forty people in two weeks.
+Interviewer: How does adding forty people go?
+O06: One at a time. There's no import. I get a spreadsheet from the graduate office and I type each person in by hand. Name, email, lab, grant code. It takes most of two days.
+Interviewer: What would you want instead?
+O06: Upload a spreadsheet. That's it. Every other system I use here can do that.
+Interviewer: What happens with grant codes for new people?
+O06: That's a mess. New students often don't know which grant they're on, so they leave it blank, and then at the end of the quarter I can't bill their usage properly. I'd love LabLoop to require a grant code when they book, picked from a list, not typed.
+Interviewer: How do new users find LabLoop, from your point of view?
+O06: I get a lot of emails from confused new people who can't book anything. I usually have to forward them to their lab manager or the core. It's not really my area, but they come to me because my name is on the welcome email.
+Interviewer: What about when people leave?
+O06: I don't get told when people leave, so their accounts stay active. Every year or so I do a clean-up, but it's guesswork.
+Interviewer: If you could change one thing, what would it be?
+O06: Spreadsheet import for new accounts. It would give me back two days every term.
+Interviewer: Thank you, that's very helpful.
+O06: No problem.

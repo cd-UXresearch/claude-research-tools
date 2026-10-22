@@ -1,0 +1,27 @@
+Participant ID: O04
+Role: Training coordinator, shared microscopy and cytometry core (serves ~25 labs)
+Time using LabLoop: about 2 years
+Interview date: 2026-10-06
+Interviewer: M. Lindqvist
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for joining. What does your role involve?
+O04: I train every new user of the core's instruments. That's somewhere around a hundred and twenty people a year. After they pass, I'm the one who unlocks the instrument for them in LabLoop.
+Interviewer: How does that work in practice?
+O04: Badly, if I'm honest. Our training records live in the university's learning system. LabLoop doesn't know about them. So after every session, I sit with a list and manually tick people off in LabLoop. If I'm away, nobody gets unlocked.
+Interviewer: How long does that take?
+O04: An hour or two after each training day. And I make mistakes. Last term I unlocked the wrong person with a similar name.
+Interviewer: What's the impact of those mistakes?
+O04: Either someone untrained gets access to an expensive instrument, or someone trained can't book and emails me, annoyed. Both happen.
+Interviewer: How do new users experience it, from what you see?
+O04: They're confused. They see the instrument, they try to book, they get "not authorised." Half of them email me, half email IT, and some just give up and ask a friend to book for them. I'd really like the message to say "complete training with the core, here's the sign-up link."
+Interviewer: Some lab managers say they'd prefer new users to come to a person rather than read a message. What do you think?
+O04: For a lab's own equipment, maybe. For the core, with a hundred and twenty people a year, I can't be the person everyone comes to. I need the system to do some of that explaining.
+Interviewer: Is there anything else that causes problems for new users?
+O04: Booking conflicts. New users don't realise that the cell sorter needs a thirty-minute setup before their slot, so they book right after someone else and then both turn up and argue about who's on the machine. LabLoop lets two bookings sit back to back with no buffer.
+Interviewer: How often does that happen?
+O04: Every couple of weeks, mostly with newer users.
+Interviewer: If you could change one thing, what would it be?
+O04: Connect LabLoop to the training records so access unlocks automatically when someone passes.
+Interviewer: Thank you so much.
+O04: Thanks for asking.

@@ -1,0 +1,25 @@
+Participant ID: O05
+Role: Postdoctoral researcher, recently moved from industry to a university immunology lab
+Time using LabLoop: about 2 months
+Interview date: 2026-10-07
+Interviewer: R. Okafor
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for speaking with us. You joined the lab recently?
+O05: Yes, two months ago. Before that I was at a pharma company for five years.
+Interviewer: How did getting started with LabLoop go?
+O05: Honestly, pretty smoothly. My lab manager sent me a short document with screenshots, which instruments I'd need, and who to ask for training. I was booking within a week.
+Interviewer: Did you ever see a "not authorised" message?
+O05: Once, for the flow cytometer. But I already knew from the document that I needed training for that, so it didn't surprise me.
+Interviewer: How does LabLoop compare to what you used in industry?
+O05: In industry we had a much more expensive system, and honestly LabLoop is simpler and easier to use. The calendar view is clearer. I'd say it's one of the more intuitive tools here.
+Interviewer: Was anything confusing?
+O05: The notifications, a bit. I was getting emails about instruments I'd never heard of. I found the settings eventually, but they're buried three levels deep.
+Interviewer: Anything else?
+O05: It doesn't sync with my calendar. I use Outlook, and in industry our booking system put everything in my calendar automatically. I miss that.
+Interviewer: What made your onboarding go well, do you think?
+O05: The document from my lab manager, really. Without it I think I'd have been as confused as some of the students. The software itself doesn't explain much, but a good human explanation filled the gap.
+Interviewer: If you could change one thing, what would it be?
+O05: Calendar sync. Everything else is fine for me.
+Interviewer: Thank you.
+O05: My pleasure.

@@ -1,0 +1,27 @@
+Participant ID: O01
+Role: First-year PhD student, university cell biology lab (joined 6 weeks ago)
+Time using LabLoop: about 6 weeks
+Interview date: 2026-10-01
+Interviewer: R. Okafor
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for joining. You're quite new to the lab. Can you tell me how you first came across LabLoop?
+O01: In my welcome email, there was a list of about fifteen systems I needed accounts for. LabLoop was number nine, I think. Just a link and "you'll need this to book equipment."
+Interviewer: What happened when you first logged in?
+O01: I could see everything, every instrument in the building, but I couldn't book any of it. Every time I tried, it said "You are not authorised to book this resource." That was it. No reason.
+Interviewer: What did you think was going on?
+O01: Honestly I thought my account was broken. I emailed the university IT helpdesk, and they said LabLoop isn't theirs. Then I asked my lab manager, and she explained I needed to do the safety induction and the instrument training first.
+Interviewer: How long did it take to get access?
+O01: For the centrifuge, two days. For the confocal, almost three weeks, because the training sessions only run twice a month and the first one was full.
+Interviewer: How did that affect your work?
+O01: My first rotation project needed the confocal. I spent the first few weeks reading papers and borrowing a second-year's time on the machine, which felt a bit awkward.
+Interviewer: Once you had access, how was booking?
+O01: Fine, mostly. The calendar view is clear. But I didn't know the etiquette. Like, nobody told me you're not supposed to book more than four hours on the confocal in a day. I booked a full day once and got a slightly frosty email.
+Interviewer: Where would you have expected to learn that?
+O01: In LabLoop, honestly. If there's a rule, the system could just tell me when I'm booking. Or stop me.
+Interviewer: What about the notifications?
+O01: I get so many. I think I'm subscribed to every instrument by default. I haven't figured out how to turn them off for the ones I don't use.
+Interviewer: If you could change one thing about starting out with LabLoop, what would it be?
+O01: When it says I'm not authorised, tell me why and what to do. "You need confocal training, here's how to sign up." That would have saved me a lot of confused emails.
+Interviewer: Thank you, that's really useful.
+O01: Thanks.

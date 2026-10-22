@@ -1,0 +1,27 @@
+Participant ID: P06
+Role: Undergraduate research assistant (part-time, 10 hrs/week), university ecology lab
+Time using LabLoop: about 3 months
+Interview date: 2026-09-17
+Interviewer: M. Lindqvist
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for joining. How did you start using LabLoop?
+P06: I joined the lab this summer as a research assistant. On my first day my supervisor sent me a link and said "book the dissecting scope through this." That was the whole onboarding.
+Interviewer: How did that first booking go?
+P06: Not great. I made an account, found the scope, and it said I wasn't authorised. There was no explanation of why or who to ask. I thought I'd done something wrong with my account.
+Interviewer: What happened next?
+P06: I asked a grad student, and she said I probably needed to do the training first. But nothing in LabLoop told me that. It just said "not authorised." It took about a week to get it sorted.
+Interviewer: How did that week affect your work?
+P06: I just couldn't do the part of the project I was hired for. I did data entry instead. It was a bit embarrassing, honestly, like I was the new person who couldn't figure out a booking website.
+Interviewer: How do you book now?
+P06: Mostly on my phone between classes. It's a bit fiddly. The time slots are tiny and the page doesn't really fit my screen, so I zoom in a lot.
+Interviewer: What about notifications?
+P06: I get loads of emails from it. I don't really read them. Most are about other people's bookings, I think.
+Interviewer: Have you noticed anything about how other people use bookings?
+P06: The scope shows as booked a lot, but when I go in, there's often nobody there. I don't feel like I can just use it, though, because I'm the most junior person and I don't want to step on anyone's toes.
+Interviewer: That's an interesting point. Tell me more.
+P06: Like, a postdoc might just take an empty slot, but I'm not going to. So when people don't use their bookings, it's people like me who lose out.
+Interviewer: If you could change one thing, what would it be?
+P06: Tell new people what they need to do. Even one sentence saying "you need training, contact this person" would have saved me a week.
+Interviewer: Thank you, this has been really useful.
+P06: Thanks for asking.

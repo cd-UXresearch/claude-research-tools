@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onboarding interviews findings</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f5f4f0; --surface: #ffffff; --text: #1c1d1f; --muted: #62656b;
+  --border: #e3e1db; --accent: #2b5a87; --dot: #d9d6ce;
+  --ok: #1d6e45; --ok-bg: #e5f3eb; --warn: #7d5300; --warn-bg: #fcefd2;
+  --bad: #ad2a20; --bad-bg: #fbe6e3;
+  --ev: #2b5a87; --ev-bg: #e8f0f8; --in: #5a4a8c; --in-bg: #f1eef9;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 2px 8px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #131416; --surface: #1c1d20; --text: #ebebec; --muted: #9fa2a8;
+    --border: #2f3135; --accent: #8db8e8; --dot: #3a3d42;
+    --ok: #74cf9c; --ok-bg: #16301f; --warn: #f0c46c; --warn-bg: #352a10;
+    --bad: #f2948b; --bad-bg: #3a1c19;
+    --ev: #8db8e8; --ev-bg: #182838; --in: #b8a8ec; --in-bg: #241f36;
+    --shadow: none;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+main { max-width: 52rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+h1, h2, h3, h4 { line-height: 1.25; margin: 0; }
+h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 3rem 0 1rem; }
+a { color: inherit; text-decoration: none; }
+.muted { color: var(--muted); }
+
+.report-head .eyebrow { color: var(--accent); font-weight: 600; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 .4rem; }
+.report-head h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -.02em; }
+.report-head .meta { color: var(--muted); margin: .6rem 0 0; }
+
+.summary { margin-top: 2rem; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .75rem; }
+.stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; box-shadow: var(--shadow); }
+.stat b { display: block; font-size: 1.7rem; font-weight: 650; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: .9rem; }
+.stat.ok b { color: var(--ok); } .stat.bad b { color: var(--bad); } .stat.warn b { color: var(--warn); }
+.banner { margin-top: 1rem; padding: .8rem 1rem; border-radius: 10px; }
+.banner.ok { background: var(--ok-bg); color: var(--ok); }
+.banner.bad { background: var(--bad-bg); color: var(--bad); }
+.how { color: var(--muted); font-size: .92rem; margin: 1rem 0 0; }
+
+.overview ol { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.overview li + li { border-top: 1px solid var(--border); }
+.overview a { display: grid; grid-template-columns: 2rem 1fr auto; gap: .75rem; align-items: center; padding: .75rem 1rem; }
+.overview a:hover { background: var(--ev-bg); }
+.overview .num { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .85rem; }
+.ov-head { font-weight: 500; }
+.ov-support { display: flex; align-items: center; gap: .5rem; white-space: nowrap; color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
+
+.dots { display: inline-flex; gap: 3px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dot); }
+.dot.on { background: var(--accent); }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem; box-shadow: var(--shadow); scroll-margin-top: 1rem; }
+.card-head { display: grid; grid-template-columns: auto 1fr; gap: 1rem; }
+.card-head .num { font-size: .85rem; font-weight: 600; color: var(--accent); background: var(--ev-bg); border-radius: 8px; padding: .25rem .5rem; height: fit-content; font-variant-numeric: tabular-nums; }
+.card h3 { font-size: 1.25rem; letter-spacing: -.01em; }
+.badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+.badge { display: inline-flex; align-items: center; gap: .45rem; font-size: .82rem; font-weight: 600; padding: .25rem .65rem; border-radius: 999px; }
+.badge.support { background: var(--ev-bg); color: var(--ev); }
+.badge.warn { background: var(--warn-bg); color: var(--warn); }
+.badge.bad { background: var(--bad-bg); color: var(--bad); }
+.badge.sm { font-size: .72rem; padding: .1rem .5rem; }
+.who { color: var(--muted); font-size: .88rem; margin: .5rem 0 0; }
+
+.alert { margin-top: 1rem; padding: .7rem .9rem; border-radius: 10px; font-size: .92rem; }
+.alert.warn { background: var(--warn-bg); color: var(--warn); }
+.alert.bad { background: var(--bad-bg); color: var(--bad); }
+
+.card section { margin-top: 1.5rem; }
+.card h4 { font-size: .95rem; font-weight: 600; display: flex; align-items: center; gap: .6rem; color: var(--muted); margin-bottom: .6rem; }
+.label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; padding: .15rem .5rem; border-radius: 6px; }
+.label.ev { background: var(--ev-bg); color: var(--ev); }
+.label.in { background: var(--in-bg); color: var(--in); }
+.evidence > p { margin: 0 0 1rem; }
+
+.quote { margin: 0 0 .75rem; padding: .9rem 1rem .8rem 1.1rem; border-left: 3px solid var(--ev); background: var(--bg); border-radius: 0 10px 10px 0; }
+.quote.bad { border-left-color: var(--bad); background: var(--bad-bg); }
+.quote blockquote { margin: 0; font-family: Georgia, "Iowan Old Style", "Times New Roman", serif; font-size: 1.05rem; line-height: 1.55; }
+.quote blockquote::before { content: "\201C"; } .quote blockquote::after { content: "\201D"; }
+.quote figcaption { display: flex; align-items: center; gap: .6rem; margin-top: .5rem; }
+.pid { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .03em; padding: .05rem .45rem; border-radius: 6px; background: var(--surface); border: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+.check { font-size: .8rem; font-weight: 600; }
+.check.ok { color: var(--ok); } .check.bad { color: var(--bad); }
+.check-note { margin: .4rem 0 0; font-size: .88rem; color: var(--bad); }
+
+.subsection { margin-top: 1.25rem; }
+.counterpoints { border-top: 1px dashed var(--border); padding-top: 1.1rem; }
+.label.ct { background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
+.contrast > p { margin: 0 0 .5rem; }
+.quote.counter { border-left-style: dashed; border-left-color: var(--muted); background: transparent; border: 1px solid var(--border); border-left: 3px dashed var(--muted); }
+
+.interpretation { background: var(--in-bg); border-radius: 12px; padding: 1rem 1.1rem; }
+.interpretation h4 { color: var(--in); }
+.interpretation p { margin: 0; font-style: italic; }
+
+footer h2 { margin-top: 3.5rem; }
+.participants { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .4rem; }
+.participants li { display: flex; gap: .6rem; align-items: baseline; }
+footer .muted { font-size: .82rem; word-break: break-all; }
+
+@media (max-width: 560px) {
+  main { padding-top: 2rem; }
+  .card { padding: 1.2rem; }
+  .card-head { grid-template-columns: 1fr; gap: .5rem; }
+  .card-head .num { width: fit-content; }
+  .overview a { grid-template-columns: 1.6rem 1fr; }
+  .ov-support { grid-column: 2; }
+}
+@media print {
+  body { background: #fff; }
+  .card, .stat, .overview ol { box-shadow: none; break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="report-head">
+    <p class="eyebrow">Research findings report</p>
+    <h1>Onboarding interviews</h1>
+    <p class="meta">21 October 2026, 15:12 · 6 interviews · 13 findings · synthesized by claude-opus-5-5</p>
+  </header>
+
+  <section class="summary">
+    <div class="stats">
+      <div class="stat"><b>13</b><span>findings</span></div>
+      <div class="stat"><b>6</b><span>participants</span></div>
+      <div class="stat ok"><b>35/35</b><span>quotes verified</span></div>
+      <div class="stat warn"><b>3</b><span>single-source findings</span></div>
+    </div>
+    <div class="banner ok"><strong>✓ All 35 quotes verified.</strong> Each one was found word-for-word in the transcript of the participant it's credited to.</div>
+    <p class="how">
+      <span class="label ev">Evidence</span> is what participants said.
+      <span class="label in">Interpretation</span> is an AI-generated hypothesis for you to judge, not a conclusion.
+      Participant counts and quote checks are computed by code from the transcripts, not by the AI.
+    </p>
+  </section>
+
+  <section class="overview">
+    <h2>Findings at a glance</h2>
+    <ol>
+          <li>
+            <a href="#finding-1">
+              <span class="num">01</span>
+              <span class="ov-head">The &quot;not authorised&quot; message gives no reason or next step, so new users get stuck and email the wrong people</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                3/6</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-2">
+              <span class="num">02</span>
+              <span class="ov-head">Granting instrument access after training is manual, instrument-by-instrument, and error-prone</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/6</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-3">
+              <span class="num">03</span>
+              <span class="ov-head">Accounts of people who have left keep their permissions, including on dangerous instruments</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/6</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-4">
+              <span class="num">04</span>
+              <span class="ov-head">Access barriers push new users into booking under other people&#x27;s names</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                3/6</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-5">
+              <span class="num">05</span>
+              <span class="ov-head">Training availability and the lack of recognition for prior training delay new users&#x27; research</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/6</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-6">
+              <span class="num">06</span>
+              <span class="ov-head">Visiting researchers cannot get into LabLoop until they have a university login</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                1/6 <span class="badge warn sm">Single source</span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-7">
+              <span class="num">07</span>
+              <span class="ov-head">Adding new users is one-at-a-time with no bulk import or bulk setup</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/6</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-8">
+              <span class="num">08</span>
+              <span class="ov-head">Booking rules and instrument constraints are not communicated or enforced at booking time</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/6</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-9">
+              <span class="num">09</span>
+              <span class="ov-head">Human-provided onboarding guidance can fill the gaps the software leaves</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/6</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-10">
+              <span class="num">10</span>
+              <span class="ov-head">Users are subscribed to notifications for every instrument by default, and the settings are hard to find</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                2/6</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-11">
+              <span class="num">11</span>
+              <span class="ov-head">Once users have access, the booking interface itself is seen as easy and clear</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                3/6</span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-12">
+              <span class="num">12</span>
+              <span class="ov-head">Grant codes are often left blank by new users, which breaks billing</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                1/6 <span class="badge warn sm">Single source</span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#finding-13">
+              <span class="num">13</span>
+              <span class="ov-head">No sync with personal calendars</span>
+              <span class="ov-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+                1/6 <span class="badge warn sm">Single source</span></span>
+            </a>
+          </li>
+    </ol>
+  </section>
+
+  <section class="findings">
+    <h2>Findings</h2>
+    
+    <article class="card" id="finding-1">
+      <header class="card-head">
+        <span class="num">01</span>
+        <div>
+          <h3>The &quot;not authorised&quot; message gives no reason or next step, so new users get stuck and email the wrong people</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>3 of 6 participants</span></div>
+          <p class="who">Supported by O01, O04, O06</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O01 saw &quot;You are not authorised to book this resource&quot; on every instrument with no reason given. O01 thought the account was broken and emailed the university IT helpdesk, which said LabLoop was not theirs, before the lab manager explained the training requirements. O01 asked for the message to say why and what to do. O04, the training coordinator for a shared core, said new users are confused by the message: some email O04, some email IT, and some ask a friend to book for them. O04 wants the message to link to training sign-up. O06, a department admin, receives many emails from confused new users who cannot book. O06 forwards them to lab managers or the core because O06&#x27;s name is on the welcome email.</p>
+        
+        <figure class="quote ok">
+          <blockquote>When it says I&#x27;m not authorised, tell me why and what to do. &quot;You need confocal training, here&#x27;s how to sign up.&quot; That would have saved me a lot of confused emails.</blockquote>
+          <figcaption>
+            <span class="pid" title="First-year PhD student, university cell biology lab (joined 6 weeks ago)">O01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>They&#x27;re confused. They see the instrument, they try to book, they get &quot;not authorised.&quot; Half of them email me, half email IT, and some just give up and ask a friend to book for them.</blockquote>
+          <figcaption>
+            <span class="pid" title="Training coordinator, shared microscopy and cytometry core (serves ~25 labs)">O04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>I get a lot of emails from confused new people who can&#x27;t book anything. I usually have to forward them to their lab manager or the core.</blockquote>
+          <figcaption>
+            <span class="pid" title="Department research administrator (manages LabLoop accounts for 9 labs)">O06</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+        <div class="subsection counterpoints">
+          <h4><span class="label ct">Contrasting views</span> Participants who disagreed or saw it differently</h4>
+          <div class="contrast">
+            <p><span class="pid">O02</span> Lab manager thinks it is fine that LabLoop does not explain access refusals. O02 sees onboarding as the lab&#x27;s job and worries that a generic message could misdirect people away from the lab manager.</p>
+            
+        <figure class="quote ok counter">
+          <blockquote>I think it&#x27;s fine that LabLoop doesn&#x27;t explain everything. Onboarding is the lab&#x27;s job, not the software&#x27;s.</blockquote>
+          <figcaption>
+            <span class="pid" title="Lab manager, university genetics lab (14 people, high turnover of students)">O02</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+          </div>
+          <div class="contrast">
+            <p><span class="pid">O05</span> Saw the message once but was not confused, because a lab-provided document had already explained the training requirement.</p>
+            
+        <figure class="quote ok counter">
+          <blockquote>Once, for the flow cytometer. But I already knew from the document that I needed training for that, so it didn&#x27;t surprise me.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, recently moved from industry to a university immunology lab">O05</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+          </div>
+        </div>
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>The unexplained refusal may be generating misrouted support load across IT, admins, and core staff, as well as delays for new users. The disagreement suggests that a single generic message could clash with lab-specific processes. A configurable message, where each lab or core sets the reason, contact, or sign-up link, might satisfy both the core&#x27;s need to scale and lab managers&#x27; wish to route people to a human.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-2">
+      <header class="card-head">
+        <span class="num">02</span>
+        <div>
+          <h3>Granting instrument access after training is manual, instrument-by-instrument, and error-prone</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 6 participants</span></div>
+          <p class="who">Supported by O02, O04</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O02 grants permissions one instrument at a time after training. This takes about twenty minutes per person, and when O02 forgets one, a user later finds they cannot book. O02 tracks training completion in a separate spreadsheet and asked for roles or bundles that grant and revoke permissions in one go. O04 said training records live in the university learning system, which LabLoop does not connect to, so O04 manually unlocks users after each session. This takes an hour or two per training day, and nobody gets unlocked when O04 is away. O04 once unlocked the wrong person with a similar name and reported that both untrained access and wrongly blocked trained users happen.</p>
+        
+        <figure class="quote ok">
+          <blockquote>There&#x27;s no way to say &quot;this person has done the standard training package, give them these six instruments.&quot;</blockquote>
+          <figcaption>
+            <span class="pid" title="Lab manager, university genetics lab (14 people, high turnover of students)">O02</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Our training records live in the university&#x27;s learning system. LabLoop doesn&#x27;t know about them. So after every session, I sit with a list and manually tick people off in LabLoop. If I&#x27;m away, nobody gets unlocked.</blockquote>
+          <figcaption>
+            <span class="pid" title="Training coordinator, shared microscopy and cytometry core (serves ~25 labs)">O04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Right now I keep that in a spreadsheet next to LabLoop, which is exactly the double handling I hoped to avoid.</blockquote>
+          <figcaption>
+            <span class="pid" title="Lab manager, university genetics lab (14 people, high turnover of students)">O02</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>The manual permission model may be a root cause of both the admin burden and some of the new-user access problems, including delays, missed permissions, and wrong unlocks. Role-based permission bundles and an integration with training records could reduce workload and errors. The wrong-person unlock suggests this also has a safety dimension, not just an efficiency one.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-3">
+      <header class="card-head">
+        <span class="num">03</span>
+        <div>
+          <h3>Accounts of people who have left keep their permissions, including on dangerous instruments</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 6 participants</span></div>
+          <p class="who">Supported by O02, O06</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O02 found someone who had left two years earlier and could still book the ultracentrifuge. O02 described feeling alarmed because the machine is dangerous for untrained users. O06 is not told when people leave, so their accounts stay active. O06 does a yearly clean-up that O06 described as guesswork.</p>
+        
+        <figure class="quote ok">
+          <blockquote>I found someone last month who left two years ago and could still book the ultracentrifuge.</blockquote>
+          <figcaption>
+            <span class="pid" title="Lab manager, university genetics lab (14 people, high turnover of students)">O02</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>I don&#x27;t get told when people leave, so their accounts stay active. Every year or so I do a clean-up, but it&#x27;s guesswork.</blockquote>
+          <figcaption>
+            <span class="pid" title="Department research administrator (manages LabLoop accounts for 9 labs)">O06</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Lack of offboarding support may create safety and compliance risk, not only clutter. Account end dates, bulk revocation by role, or periodic review prompts could address this. The same end-date mechanism might also serve visitors (see O03).</p>
+      </section>
+    </article>
+    <article class="card" id="finding-4">
+      <header class="card-head">
+        <span class="num">04</span>
+        <div>
+          <h3>Access barriers push new users into booking under other people&#x27;s names</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>3 of 6 participants</span></div>
+          <p class="who">Supported by O01, O03, O04</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>While waiting for confocal training, O01 borrowed a second-year student&#x27;s time on the machine and found this awkward. O03&#x27;s host booked time under her own name while O03 had no account. As a result, others thought the host was using the microscope constantly, and problems appeared to be from her sessions. O04 reported that some new users who hit the &quot;not authorised&quot; message ask a friend to book for them.</p>
+        
+        <figure class="quote ok">
+          <blockquote>I spent the first few weeks reading papers and borrowing a second-year&#x27;s time on the machine, which felt a bit awkward.</blockquote>
+          <figcaption>
+            <span class="pid" title="First-year PhD student, university cell biology lab (joined 6 weeks ago)">O01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>My host booked time for me under her own name. Which worked, but then everyone thought she was using the microscope all the time, and when something went wrong it looked like it was her session.</blockquote>
+          <figcaption>
+            <span class="pid" title="Visiting researcher (3-month stay), from a partner university abroad">O03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>some just give up and ask a friend to book for them</blockquote>
+          <figcaption>
+            <span class="pid" title="Training coordinator, shared microscopy and cytometry core (serves ~25 labs)">O04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Proxy bookings may undermine the accuracy of usage records, accountability for incidents, and possibly billing. They may also let untrained people onto instruments under someone else&#x27;s name. Reducing time-to-access, or offering a sanctioned way to book on behalf of a trainee or guest, might reduce this behaviour.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-5">
+      <header class="card-head">
+        <span class="num">05</span>
+        <div>
+          <h3>Training availability and the lack of recognition for prior training delay new users&#x27; research</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 6 participants</span></div>
+          <p class="who">Supported by O01, O03</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O01 got centrifuge access in two days but waited almost three weeks for the confocal, because sessions run twice a month and the first was full. This held up O01&#x27;s first rotation project. O03 had already completed the same training on the same microscope model at their home institution, but there was no way to record it, so O03 had to repeat it. O03 said this cost a week of a three-month visit.</p>
+        
+        <figure class="quote ok">
+          <blockquote>For the confocal, almost three weeks, because the training sessions only run twice a month and the first one was full.</blockquote>
+          <figcaption>
+            <span class="pid" title="First-year PhD student, university cell biology lab (joined 6 weeks ago)">O01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>I had already done the same training at my home institution, on the same model of microscope. But there was no way to record that. I had to do it again here.</blockquote>
+          <figcaption>
+            <span class="pid" title="Visiting researcher (3-month stay), from a partner university abroad">O03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>I understand they want to be safe, but it cost me a week of my three months.</blockquote>
+          <figcaption>
+            <span class="pid" title="Visiting researcher (3-month stay), from a partner university abroad">O03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Time-to-first-booking appears to be driven partly by training logistics outside LabLoop. However, a way to log external or prior training for a trainer to verify might shorten access for experienced users, especially short-term visitors. Visibility of upcoming training sessions within LabLoop could also help, though no participant asked for that directly.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-6">
+      <header class="card-head">
+        <span class="num">06</span>
+        <div>
+          <h3>Visiting researchers cannot get into LabLoop until they have a university login</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>1 of 6 participants</span><span class="badge warn">⚑ Single source</span></div>
+          <p class="who">Supported by O03</p>
+        </div>
+      </header>
+      <div class="alert warn"><strong>Single-participant finding.</strong> Only one person raised this. Treat it as a lead to explore, not a pattern.</div>
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O03 could not see the booking calendar for the first ten days of a three-month visit, because LabLoop required a university login and visitor paperwork was slow. O03 has not been told what happens to the account when the visit ends and wants to be able to download their booking history. O03 asked for a host-created guest account with an end date.</p>
+        
+        <figure class="quote ok">
+          <blockquote>LabLoop wanted a university login, and I didn&#x27;t have one for the first ten days because the visitor paperwork was slow.</blockquote>
+          <figcaption>
+            <span class="pid" title="Visiting researcher (3-month stay), from a partner university abroad">O03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>A guest or visitor account that a host can create on day one, with an end date. That would solve most of my problems.</blockquote>
+          <figcaption>
+            <span class="pid" title="Visiting researcher (3-month stay), from a partner university abroad">O03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>When my visit ends, I&#x27;m curious whether my account will just stop. Nobody has told me. I would like to know I can still download my booking history for my report.</blockquote>
+          <figcaption>
+            <span class="pid" title="Visiting researcher (3-month stay), from a partner university abroad">O03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Single-source, but visitors may be a recurring group: O02 mentions visiting researchers among their roughly eight new people a year. A host-sponsored guest account with an expiry date could address visitor onboarding and overlaps with the offboarding gap raised by O02 and O06.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-7">
+      <header class="card-head">
+        <span class="num">07</span>
+        <div>
+          <h3>Adding new users is one-at-a-time with no bulk import or bulk setup</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 6 participants</span></div>
+          <p class="who">Supported by O06, O02</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O06 adds up to forty people at the start of term by typing each one in by hand from a graduate office spreadsheet. This takes most of two days, and O06 asked for spreadsheet upload. O02 asked for bulk actions: add a person, tick a role, done.</p>
+        
+        <figure class="quote ok">
+          <blockquote>One at a time. There&#x27;s no import. I get a spreadsheet from the graduate office and I type each person in by hand. Name, email, lab, grant code. It takes most of two days.</blockquote>
+          <figcaption>
+            <span class="pid" title="Department research administrator (manages LabLoop accounts for 9 labs)">O06</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Upload a spreadsheet. That&#x27;s it. Every other system I use here can do that.</blockquote>
+          <figcaption>
+            <span class="pid" title="Department research administrator (manages LabLoop accounts for 9 labs)">O06</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Bulk actions. Add a person, tick a role, done.</blockquote>
+          <figcaption>
+            <span class="pid" title="Lab manager, university genetics lab (14 people, high turnover of students)">O02</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Admin effort scales linearly with intake and peaks at term start, the same time new users are most likely to be confused. Bulk import combined with role assignment might cut admin time and reduce errors at the busiest point of the year.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-8">
+      <header class="card-head">
+        <span class="num">08</span>
+        <div>
+          <h3>Booking rules and instrument constraints are not communicated or enforced at booking time</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 6 participants</span></div>
+          <p class="who">Supported by O01, O04</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O01 did not know about an unwritten four-hour daily limit on the confocal, booked a full day, and received a frosty email. O01 expected LabLoop to tell them about such rules, or stop the booking, at the time of booking. O04 said new users do not realise the cell sorter needs thirty minutes of setup before their slot. Because LabLoop allows back-to-back bookings with no buffer, conflicts arise every couple of weeks, mostly with newer users.</p>
+        
+        <figure class="quote ok">
+          <blockquote>If there&#x27;s a rule, the system could just tell me when I&#x27;m booking. Or stop me.</blockquote>
+          <figcaption>
+            <span class="pid" title="First-year PhD student, university cell biology lab (joined 6 weeks ago)">O01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>nobody told me you&#x27;re not supposed to book more than four hours on the confocal in a day. I booked a full day once and got a slightly frosty email.</blockquote>
+          <figcaption>
+            <span class="pid" title="First-year PhD student, university cell biology lab (joined 6 weeks ago)">O01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>LabLoop lets two bookings sit back to back with no buffer.</blockquote>
+          <figcaption>
+            <span class="pid" title="Training coordinator, shared microscopy and cytometry core (serves ~25 labs)">O04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Local norms that experienced users know implicitly may be tripping up newcomers and causing social friction. Configurable per-instrument rules, such as maximum duration and setup buffers, shown or enforced during booking could prevent these conflicts without relying on word of mouth.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-9">
+      <header class="card-head">
+        <span class="num">09</span>
+        <div>
+          <h3>Human-provided onboarding guidance can fill the gaps the software leaves</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 6 participants</span></div>
+          <p class="who">Supported by O05, O02</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O05 said onboarding went smoothly because their lab manager sent a short document with screenshots, a list of needed instruments, and who to ask for training. O05 believes they would otherwise have been as confused as some students. O02 prefers new users to come to a person, as a way of learning the lab culture.</p>
+        
+        <figure class="quote ok">
+          <blockquote>The document from my lab manager, really. Without it I think I&#x27;d have been as confused as some of the students. The software itself doesn&#x27;t explain much, but a good human explanation filled the gap.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, recently moved from industry to a university immunology lab">O05</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>I want people to come to a human. That&#x27;s how they learn the culture.</blockquote>
+          <figcaption>
+            <span class="pid" title="Lab manager, university genetics lab (14 people, high turnover of students)">O02</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+        <div class="subsection counterpoints">
+          <h4><span class="label ct">Contrasting views</span> Participants who disagreed or saw it differently</h4>
+          <div class="contrast">
+            <p><span class="pid">O04</span> Training coordinator says a human-first approach may work for a lab&#x27;s own equipment but does not scale for a core serving around 120 new users a year.</p>
+            
+        <figure class="quote ok counter">
+          <blockquote>For a lab&#x27;s own equipment, maybe. For the core, with a hundred and twenty people a year, I can&#x27;t be the person everyone comes to. I need the system to do some of that explaining.</blockquote>
+          <figcaption>
+            <span class="pid" title="Training coordinator, shared microscopy and cytometry core (serves ~25 labs)">O04</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+          </div>
+        </div>
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Onboarding quality may currently depend heavily on whether a particular lab manager provides good guidance, which leads to uneven experiences. LabLoop might support rather than replace human onboarding, for example by letting labs attach their own guidance or contacts. Needs may differ between small labs and shared cores.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-10">
+      <header class="card-head">
+        <span class="num">10</span>
+        <div>
+          <h3>Users are subscribed to notifications for every instrument by default, and the settings are hard to find</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>2 of 6 participants</span></div>
+          <p class="who">Supported by O01, O05</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O01 believes they are subscribed to every instrument by default and has not worked out how to turn off notifications for instruments they do not use. O05 received emails about unfamiliar instruments and eventually found the settings, which O05 described as three levels deep.</p>
+        
+        <figure class="quote ok">
+          <blockquote>I think I&#x27;m subscribed to every instrument by default. I haven&#x27;t figured out how to turn them off for the ones I don&#x27;t use.</blockquote>
+          <figcaption>
+            <span class="pid" title="First-year PhD student, university cell biology lab (joined 6 weeks ago)">O01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>I was getting emails about instruments I&#x27;d never heard of. I found the settings eventually, but they&#x27;re buried three levels deep.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, recently moved from industry to a university immunology lab">O05</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Default-all subscriptions may create noise for new users in particular, which could cause them to ignore notifications that matter. Defaulting subscriptions to instruments a user is authorised for, or making settings easier to reach, might help.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-11">
+      <header class="card-head">
+        <span class="num">11</span>
+        <div>
+          <h3>Once users have access, the booking interface itself is seen as easy and clear</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>3 of 6 participants</span></div>
+          <p class="who">Supported by O01, O03, O05</p>
+        </div>
+      </header>
+      
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O01 described booking as fine, mostly, with a clear calendar view. O03 understood booking in five minutes and said the only problem was getting in. O05 compared LabLoop favourably with a more expensive industry system, calling it simpler, clearer, and one of the more intuitive tools available.</p>
+        
+        <figure class="quote ok">
+          <blockquote>The booking itself is easy. I use similar systems at home. I understood it in five minutes. The problem is only getting in.</blockquote>
+          <figcaption>
+            <span class="pid" title="Visiting researcher (3-month stay), from a partner university abroad">O03</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>In industry we had a much more expensive system, and honestly LabLoop is simpler and easier to use. The calendar view is clearer.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, recently moved from industry to a university immunology lab">O05</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        <figure class="quote ok">
+          <blockquote>Fine, mostly. The calendar view is clear.</blockquote>
+          <figcaption>
+            <span class="pid" title="First-year PhD student, university cell biology lab (joined 6 weeks ago)">O01</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>The core booking experience appears to be a strength. This suggests the onboarding problems sit around access, permissions, and accounts rather than in the booking interface, so effort may be better spent on getting users to their first successful booking.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-12">
+      <header class="card-head">
+        <span class="num">12</span>
+        <div>
+          <h3>Grant codes are often left blank by new users, which breaks billing</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>1 of 6 participants</span><span class="badge warn">⚑ Single source</span></div>
+          <p class="who">Supported by O06</p>
+        </div>
+      </header>
+      <div class="alert warn"><strong>Single-participant finding.</strong> Only one person raised this. Treat it as a lead to explore, not a pattern.</div>
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O06 said new students often do not know which grant they are on and leave the code blank, so their usage cannot be billed properly at quarter end. O06 wants LabLoop to require a grant code at booking, picked from a list rather than typed.</p>
+        
+        <figure class="quote ok">
+          <blockquote>New students often don&#x27;t know which grant they&#x27;re on, so they leave it blank, and then at the end of the quarter I can&#x27;t bill their usage properly. I&#x27;d love LabLoop to require a grant code when they book, picked from a list, not typed.</blockquote>
+          <figcaption>
+            <span class="pid" title="Department research administrator (manages LabLoop accounts for 9 labs)">O06</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Single-source. A required, constrained grant-code field could improve billing data quality. However, forcing it at booking might add another barrier for new users who do not know their grant, so pre-assigning codes at account creation could be worth exploring.</p>
+      </section>
+    </article>
+    <article class="card" id="finding-13">
+      <header class="card-head">
+        <span class="num">13</span>
+        <div>
+          <h3>No sync with personal calendars</h3>
+          <div class="badges"><span class="badge support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>1 of 6 participants</span><span class="badge warn">⚑ Single source</span></div>
+          <p class="who">Supported by O05</p>
+        </div>
+      </header>
+      <div class="alert warn"><strong>Single-participant finding.</strong> Only one person raised this. Treat it as a lead to explore, not a pattern.</div>
+      <section class="evidence">
+        <h4><span class="label ev">Evidence</span> What participants said</h4>
+        <p>O05 uses Outlook and misses the automatic calendar sync their previous industry booking system provided. O05 named calendar sync as the one thing they would change.</p>
+        
+        <figure class="quote ok">
+          <blockquote>It doesn&#x27;t sync with my calendar. I use Outlook, and in industry our booking system put everything in my calendar automatically. I miss that.</blockquote>
+          <figcaption>
+            <span class="pid" title="Postdoctoral researcher, recently moved from industry to a university immunology lab">O05</span>
+            <span class="check ok" title="Found word-for-word in this participant&#x27;s transcript">✓ Verified</span>
+          </figcaption>
+          
+        </figure>
+        
+      </section>
+      <section class="interpretation">
+        <h4><span class="label in">Interpretation</span> What it might mean</h4>
+        <p>Single-source. This may matter more to users coming from industry or other institutions with richer tools. It is less tied to onboarding than the other findings, but it was this participant&#x27;s top request.</p>
+      </section>
+    </article>
+  </section>
+
+  <footer>
+    <h2>Participants</h2>
+    <ul class="participants"><li><span class="pid">O01</span> First-year PhD student, university cell biology lab (joined 6 weeks ago)</li><li><span class="pid">O02</span> Lab manager, university genetics lab (14 people, high turnover of students)</li><li><span class="pid">O03</span> Visiting researcher (3-month stay), from a partner university abroad</li><li><span class="pid">O04</span> Training coordinator, shared microscopy and cytometry core (serves ~25 labs)</li><li><span class="pid">O05</span> Postdoctoral researcher, recently moved from industry to a university immunology lab</li><li><span class="pid">O06</span> Department research administrator (manages LabLoop accounts for 9 labs)</li></ul>
+    <p class="muted">Source folder: onboarding_interviews</p>
+  </footer>
+</main>
+</body>
+</html>

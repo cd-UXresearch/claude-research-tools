@@ -1,0 +1,29 @@
+Participant ID: P04
+Role: Core facility technician, shared imaging and flow cytometry core (serves ~30 labs)
+Time using LabLoop: about 1 year
+Interview date: 2026-09-12
+Interviewer: M. Lindqvist
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for being here. Tell me about your role.
+P04: I run the shared core, so I look after two flow cytometers, a cell sorter, and three microscopes that about thirty labs use. LabLoop is how all of those labs book time with us.
+Interviewer: How does that compare to what you had before?
+P04: Before LabLoop we used a booking tool built by a grad student years ago who'd since left. Nobody could fix it. So LabLoop was a big step up just by existing and having support.
+Interviewer: What do you use most?
+P04: The maintenance windows. I can schedule recurring maintenance, like the sorter cleaning every Monday morning, and it just blocks itself. That's my favourite feature by a mile. It saves me from having to argue with people about why they can't book Monday at eight.
+Interviewer: What about training requirements?
+P04: That's the other big one. I can say that you have to have completed sorter training before you can book the sorter. That's critical for us, the sorter is very expensive and very easy to break. Before, untrained people would just book it and I'd find out when they showed up.
+Interviewer: What's frustrating?
+P04: Ghost bookings. Labs book big blocks and then don't come. With thirty labs it's worse than in a single lab because nobody knows each other, so there's no social pressure. I'd love a check-in, or at least some way to see which labs no-show the most so I can have a conversation with them.
+Interviewer: Have you tried anything to deal with it?
+P04: I send a weekly email reminding people to cancel if they're not coming. It helps for about two days.
+Interviewer: Anything else?
+P04: Double bookings when two people book at almost the same moment. It's rare, but it's happened twice in the past month on the cell sorter, and both people showed up thinking they had the slot. I had to pick who got it.
+Interviewer: How did that feel?
+P04: Awful. It makes the facility look disorganised, and it makes me look like I'm playing favourites.
+Interviewer: Do you use calendar integration?
+P04: There isn't any, which is a shame. I'd want the core's maintenance schedule to show up in my Outlook automatically.
+Interviewer: If you could change one thing, what would it be?
+P04: Stop the double bookings. That's a trust thing. If people can't trust the booking, the whole system falls apart.
+Interviewer: Thanks so much.
+P04: Thank you.

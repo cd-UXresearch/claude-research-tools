@@ -1,0 +1,27 @@
+Participant ID: P05
+Role: Postdoctoral researcher, small biotech startup (6 scientists)
+Time using LabLoop: about 8 months
+Interview date: 2026-09-15
+Interviewer: R. Okafor
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for talking with us. Can you describe your work and where LabLoop comes in?
+P05: I'm at a small startup, six of us at the bench. We share a plate reader, an HPLC, and a fume hood that's always in demand. We moved to LabLoop about eight months ago, mostly because our CEO saw it at a conference.
+Interviewer: What was the switch like?
+P05: Pretty smooth. We're small, so it took maybe an afternoon to set up. I'd say it's fine. It does what it says.
+Interviewer: Tell me about the last time you used it.
+P05: Yesterday, booking the HPLC for an overnight run. I did it on my phone in the lab, which works fine for me.
+Interviewer: Some people have said the mobile experience is hard to use. What's your experience?
+P05: Really? I haven't had any trouble. I've got a big phone, maybe that helps. I just tap the slot and confirm. It's not beautiful, but it works.
+Interviewer: What frustrates you about LabLoop?
+P05: The emails. I get a daily summary and an email for every single change, and I can't figure out how to keep one and not the other. I've set up a filter to dump them into a folder I never look at, which kind of defeats the purpose.
+Interviewer: Anything else?
+P05: Calendar. I live in Google Calendar, everyone at the company does. If LabLoop bookings showed up there I could see at a glance that I've got the HPLC at two and a call at three. Right now it's a separate world.
+Interviewer: How do people at your company handle unused bookings?
+P05: Honestly, it's not really a problem for us. There are six of us, we sit in the same room. If I'm not using the hood, I just shout across the bench. I can see how that would be different in a big shared facility.
+Interviewer: Is there anything you wish LabLoop did?
+P05: Maybe a simpler price for small teams. We're paying for features built for big universities, like department billing, that we'll never use.
+Interviewer: If you could change one thing, what would it be?
+P05: Calendar sync. That would save me a little bit of friction every single day.
+Interviewer: Thanks, that's great.
+P05: Happy to help.

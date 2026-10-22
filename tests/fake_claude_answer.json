@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "headline": "Unused bookings block equipment for others",
+      "supporting_participants": ["P01", "P02", "P04", "P06"],
+      "evidence": "Participants described instruments showing as booked while sitting empty.",
+      "quotes": [
+        {"participant_id": "P01", "quote": "Bookings that nobody shows up for."},
+        {"participant_id": "P06", "quote": "So when people don't use their bookings, it's people like me who lose out."},
+        {"participant_id": "P04", "quote": "Nobody ever comes to their bookings."}
+      ],
+      "contrasting_views": [
+        {"participant_id": "P03", "summary": "Sees some slack as healthy.", "quote": "Experiments run long, things fail, you need some slack."}
+      ],
+      "interpretation": "Hoarding may be a response to scarcity."
+    },
+    {
+      "headline": "Recurring maintenance windows are highly valued",
+      "supporting_participants": ["P04"],
+      "evidence": "One participant called recurring maintenance their favourite feature.",
+      "quotes": [
+        {"participant_id": "P01", "quote": "That's my favourite feature by a mile."}
+      ],
+      "contrasting_views": [],
+      "interpretation": "Facility staff may value automation of routine blocks."
+    }
+  ],
+  "_meta": {"model": "fake-test-data"}
+}

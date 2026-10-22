@@ -1,0 +1,31 @@
+Participant ID: P02
+Role: PhD student (4th year), university neuroscience lab
+Time using LabLoop: about 18 months
+Interview date: 2026-09-09
+Interviewer: R. Okafor
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for joining. Can you start by telling me what you're working on and how you use LabLoop?
+P02: Yeah. I'm doing imaging work, so I'm on the two-photon microscope a lot, and sometimes the cryostat. I use LabLoop to book both, mostly late evenings because that's when they're free.
+Interviewer: Tell me about the last time you booked something.
+P02: Last night, from my phone, on the bus home. Which was painful.
+Interviewer: Painful how?
+P02: The mobile site is just the desktop site shrunk down. I have to pinch and zoom to hit the right time slot, and twice I've booked the wrong hour because my thumb landed on the row below. Then I have to go back on my laptop to fix it.
+Interviewer: How often do you book from your phone?
+P02: Most of the time, honestly. I'm not sitting at a desk. I'm at the bench or walking between buildings.
+Interviewer: What else stands out?
+P02: The notifications. I get an email every time anyone touches anything. Somebody moves a booking on a machine I've never used and I get an email. I turned them all off, and then I missed the one telling me my own slot got cancelled for maintenance.
+Interviewer: What happened then?
+P02: I showed up at nine at night and the microscope was being serviced. I lost a whole evening. My samples don't keep, so that was a week of prep gone.
+Interviewer: That sounds really frustrating.
+P02: It was. I'm not mad at the lab manager, she did post it. The problem is I couldn't tell the important notifications from the noise.
+Interviewer: How do you feel about how others use the booking system?
+P02: People hold slots they don't use. You see the two-photon booked solid for the week and then you walk past and it's empty. Some people book "just in case" and never cancel.
+Interviewer: Do you ever do that yourself?
+P02: I have, I'll admit it. When it's that hard to get time you start hoarding. It's kind of a vicious cycle.
+Interviewer: Do you connect LabLoop to any other tools?
+P02: I wish. I use Google Calendar for everything. I end up typing my bookings into my calendar by hand so I don't double-book myself with seminars.
+Interviewer: If you could change one thing, what would it be?
+P02: Make it work properly on a phone. That's where I actually am when I need it.
+Interviewer: Thank you so much.
+P02: Sure, good luck with it.

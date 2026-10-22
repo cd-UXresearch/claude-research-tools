@@ -1,0 +1,33 @@
+Participant ID: P01
+Role: Lab manager, university molecular biology lab (9 people)
+Time using LabLoop: about 2 years
+Interview date: 2026-09-08
+Interviewer: R. Okafor
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for making the time. To start, can you tell me a bit about your role and how LabLoop fits into it?
+P01: Sure. I'm the lab manager, so I'm the person who orders reagents, keeps the equipment alive, and makes sure nine people aren't fighting over the same three machines. LabLoop is basically where all of that scheduling lives now.
+Interviewer: What were you using before?
+P01: A shared spreadsheet and a whiteboard by the door. The whiteboard was honestly the source of truth, which tells you how bad the spreadsheet was.
+Interviewer: Walk me through the last time you used LabLoop.
+P01: This morning, actually. I blocked out the confocal for a service visit on Thursday, and then I checked who had the qPCR machine booked this week because someone asked me if it was free.
+Interviewer: How did that go?
+P01: Fine. Blocking time is easy. The thing I like is that once I block it, people get a notification, so I don't have to send an email and then answer five replies asking what it means.
+Interviewer: Tell me more about the notifications.
+P01: I know some people in the lab mute them, but for me they're the whole point. If a booking changes on an instrument I'm responsible for, I want to know right away. I'd rather get too many than miss one.
+Interviewer: What's the most frustrating part of LabLoop for you?
+P01: Bookings that nobody shows up for. Someone books the confocal for four hours, they don't come, and the machine just sits there. Meanwhile somebody else needed it and saw it was taken and gave up.
+Interviewer: How often does that happen?
+P01: Every week. At least once or twice a week on the confocal alone. I've started walking past the room to see if anyone's actually in there, which is exactly the kind of thing the software was supposed to stop me doing.
+Interviewer: What would help?
+P01: Some kind of check-in. If you don't check in within fifteen minutes, the slot opens back up. I've seen that in room booking systems and I don't know why it isn't here.
+Interviewer: Anything else that's missing?
+P01: It doesn't talk to my calendar. I live in Outlook. I have to look at LabLoop and then separately look at my calendar to see if I can actually make the time I booked. It's two places for one thing.
+Interviewer: Do you use any of the reporting features?
+P01: A little. I pull a usage report at the end of each quarter so I can show the PI which instruments are earning their keep. The export is a bit messy. I have to clean it up in Excel before I can show anyone, but it's better than nothing.
+Interviewer: What about the maintenance features?
+P01: The maintenance blocks are good. I can mark an instrument as down and it greys out for everyone. That part works well.
+Interviewer: If you could change one thing tomorrow, what would it be?
+P01: The no-shows. Honestly if they fixed that I would forgive almost everything else.
+Interviewer: Thank you, that's really helpful.
+P01: No problem.

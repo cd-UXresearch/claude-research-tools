@@ -1,0 +1,23 @@
+Participant ID: M04
+Role: Postdoctoral researcher, university structural biology lab
+Time using LabLoop: about 1 year
+Interview date: 2026-10-15
+Interviewer: M. Lindqvist
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for speaking with us. Do you use LabLoop on your phone?
+M04: Sometimes, but not much. I plan my week on Sunday evening on my laptop and book everything then. I like seeing the whole week at once.
+Interviewer: When do you use your phone?
+M04: Mostly to check what's on today, or to cancel something if an experiment fails. For that it's perfectly fine. I tap my booking and hit cancel.
+Interviewer: Some people find booking on mobile fiddly. What's your view?
+M04: I can see why, the time slots are small. But honestly, I don't think booking is something you should be doing on a phone anyway. You need to see the whole picture, who else is booked, maintenance, all of that. I'd rather they made the desktop version better than spent effort on mobile.
+Interviewer: Tell me more about what you'd improve on desktop.
+M04: Seeing more than one instrument at a time. I often need the crystallisation robot and then the imager straight after, and I have to flip between two calendars to line them up.
+Interviewer: Have you had any booking conflicts?
+M04: Once, but that was a maintenance window that got added after I'd booked, and I didn't see the email. Not a mobile thing.
+Interviewer: How do you feel about the notifications?
+M04: I turned most of them off. I check the calendar myself.
+Interviewer: If you could change one thing, what would it be?
+M04: Let me view several instruments side by side on desktop.
+Interviewer: Thank you.
+M04: Sure.

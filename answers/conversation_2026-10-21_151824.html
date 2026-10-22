@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Q&amp;A, 21 October 2026, 15:18</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f5f4f0; --surface: #ffffff; --text: #1c1d1f; --muted: #62656b;
+  --border: #e3e1db; --accent: #2b5a87; --dot: #d9d6ce;
+  --ok: #1d6e45; --ok-bg: #e5f3eb; --warn: #7d5300; --warn-bg: #fcefd2;
+  --bad: #ad2a20; --bad-bg: #fbe6e3;
+  --ev: #2b5a87; --ev-bg: #e8f0f8; --in: #5a4a8c; --in-bg: #f1eef9;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 2px 8px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #131416; --surface: #1c1d20; --text: #ebebec; --muted: #9fa2a8;
+    --border: #2f3135; --accent: #8db8e8; --dot: #3a3d42;
+    --ok: #74cf9c; --ok-bg: #16301f; --warn: #f0c46c; --warn-bg: #352a10;
+    --bad: #f2948b; --bad-bg: #3a1c19;
+    --ev: #8db8e8; --ev-bg: #182838; --in: #b8a8ec; --in-bg: #241f36;
+    --shadow: none;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+main { max-width: 52rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+h1, h2, h3, h4 { line-height: 1.25; margin: 0; }
+h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 3rem 0 1rem; }
+a { color: inherit; text-decoration: none; }
+.muted { color: var(--muted); }
+
+.report-head .eyebrow { color: var(--accent); font-weight: 600; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 .4rem; }
+.report-head h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -.02em; }
+.report-head .meta { color: var(--muted); margin: .6rem 0 0; }
+
+.summary { margin-top: 2rem; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .75rem; }
+.stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; box-shadow: var(--shadow); }
+.stat b { display: block; font-size: 1.7rem; font-weight: 650; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: .9rem; }
+.stat.ok b { color: var(--ok); } .stat.bad b { color: var(--bad); } .stat.warn b { color: var(--warn); }
+.banner { margin-top: 1rem; padding: .8rem 1rem; border-radius: 10px; }
+.banner.ok { background: var(--ok-bg); color: var(--ok); }
+.banner.bad { background: var(--bad-bg); color: var(--bad); }
+.how { color: var(--muted); font-size: .92rem; margin: 1rem 0 0; }
+
+.overview ol { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.overview li + li { border-top: 1px solid var(--border); }
+.overview a { display: grid; grid-template-columns: 2rem 1fr auto; gap: .75rem; align-items: center; padding: .75rem 1rem; }
+.overview a:hover { background: var(--ev-bg); }
+.overview .num { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .85rem; }
+.ov-head { font-weight: 500; }
+.ov-support { display: flex; align-items: center; gap: .5rem; white-space: nowrap; color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
+
+.dots { display: inline-flex; gap: 3px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dot); }
+.dot.on { background: var(--accent); }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem; box-shadow: var(--shadow); scroll-margin-top: 1rem; }
+.card-head { display: grid; grid-template-columns: auto 1fr; gap: 1rem; }
+.card-head .num { font-size: .85rem; font-weight: 600; color: var(--accent); background: var(--ev-bg); border-radius: 8px; padding: .25rem .5rem; height: fit-content; font-variant-numeric: tabular-nums; }
+.card h3 { font-size: 1.25rem; letter-spacing: -.01em; }
+.badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+.badge { display: inline-flex; align-items: center; gap: .45rem; font-size: .82rem; font-weight: 600; padding: .25rem .65rem; border-radius: 999px; }
+.badge.support { background: var(--ev-bg); color: var(--ev); }
+.badge.warn { background: var(--warn-bg); color: var(--warn); }
+.badge.bad { background: var(--bad-bg); color: var(--bad); }
+.badge.sm { font-size: .72rem; padding: .1rem .5rem; }
+.who { color: var(--muted); font-size: .88rem; margin: .5rem 0 0; }
+
+.alert { margin-top: 1rem; padding: .7rem .9rem; border-radius: 10px; font-size: .92rem; }
+.alert.warn { background: var(--warn-bg); color: var(--warn); }
+.alert.bad { background: var(--bad-bg); color: var(--bad); }
+
+.card section { margin-top: 1.5rem; }
+.card h4 { font-size: .95rem; font-weight: 600; display: flex; align-items: center; gap: .6rem; color: var(--muted); margin-bottom: .6rem; }
+.label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; padding: .15rem .5rem; border-radius: 6px; }
+.label.ev { background: var(--ev-bg); color: var(--ev); }
+.label.in { background: var(--in-bg); color: var(--in); }
+.evidence > p { margin: 0 0 1rem; }
+
+.quote { margin: 0 0 .75rem; padding: .9rem 1rem .8rem 1.1rem; border-left: 3px solid var(--ev); background: var(--bg); border-radius: 0 10px 10px 0; }
+.quote.bad { border-left-color: var(--bad); background: var(--bad-bg); }
+.quote blockquote { margin: 0; font-family: Georgia, "Iowan Old Style", "Times New Roman", serif; font-size: 1.05rem; line-height: 1.55; }
+.quote blockquote::before { content: "\201C"; } .quote blockquote::after { content: "\201D"; }
+.quote figcaption { display: flex; align-items: center; gap: .6rem; margin-top: .5rem; }
+.pid { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .03em; padding: .05rem .45rem; border-radius: 6px; background: var(--surface); border: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+.check { font-size: .8rem; font-weight: 600; }
+.check.ok { color: var(--ok); } .check.bad { color: var(--bad); }
+.check-note { margin: .4rem 0 0; font-size: .88rem; color: var(--bad); }
+
+.subsection { margin-top: 1.25rem; }
+.counterpoints { border-top: 1px dashed var(--border); padding-top: 1.1rem; }
+.label.ct { background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
+.contrast > p { margin: 0 0 .5rem; }
+.quote.counter { border-left-style: dashed; border-left-color: var(--muted); background: transparent; border: 1px solid var(--border); border-left: 3px dashed var(--muted); }
+
+.interpretation { background: var(--in-bg); border-radius: 12px; padding: 1rem 1.1rem; }
+.interpretation h4 { color: var(--in); }
+.interpretation p { margin: 0; font-style: italic; }
+
+footer h2 { margin-top: 3.5rem; }
+.participants { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .4rem; }
+.participants li { display: flex; gap: .6rem; align-items: baseline; }
+footer .muted { font-size: .82rem; word-break: break-all; }
+
+@media (max-width: 560px) {
+  main { padding-top: 2rem; }
+  .card { padding: 1.2rem; }
+  .card-head { grid-template-columns: 1fr; gap: .5rem; }
+  .card-head .num { width: fit-content; }
+  .overview a { grid-template-columns: 1.6rem 1fr; }
+  .ov-support { grid-column: 2; }
+}
+@media print {
+  body { background: #fff; }
+  .card, .stat, .overview ol { box-shadow: none; break-inside: avoid; }
+}
+
+:root { --gap: #5f6368; --gap-bg: #eceae4; }
+@media (prefers-color-scheme: dark) { :root { --gap: #b9bcc2; --gap-bg: #2a2c30; } }
+.small { font-size: .8rem; }
+.studies { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .75rem; }
+.study-chip { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: .8rem 1rem; box-shadow: var(--shadow); display: grid; gap: .15rem; }
+.study-chip:hover { border-color: var(--accent); }
+.study-chip span { color: var(--muted); font-size: .85rem; }
+.summary h2 { margin-top: 0; }
+
+.question h3 { font-size: 1.35rem; margin-top: .5rem; letter-spacing: -.01em; }
+.turn .badges { margin-top: 1rem; }
+.badge.cov-ok, .badge.okb { background: var(--ok-bg); color: var(--ok); }
+.badge.cov-warn { background: var(--warn-bg); color: var(--warn); }
+.badge.cov-gap { background: var(--gap-bg); color: var(--gap); }
+.summary-text { font-size: 1.1rem; line-height: 1.55; margin: 1rem 0 0; }
+
+.points { list-style: none; padding: 0; margin: 0; counter-reset: pt; }
+.point { position: relative; padding-left: 2rem; margin-bottom: 1.4rem; counter-increment: pt; }
+.point::before { content: counter(pt); position: absolute; left: 0; top: .1rem; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--ev-bg); color: var(--ev); font-size: .75rem; font-weight: 700; display: grid; place-items: center; }
+.point > p { margin: 0 0 .7rem; }
+.src-label { margin: .9rem 0 .4rem; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+.sources { display: grid; gap: .5rem; }
+.source { display: grid; gap: .1rem; padding: .55rem .8rem; border: 1px solid var(--border); border-radius: 10px; font-size: .88rem; }
+a.source:hover { border-color: var(--accent); background: var(--ev-bg); }
+.source.bad { background: var(--bad-bg); color: var(--bad); border-color: transparent; font-weight: 600; }
+.src-study { font-size: .75rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
+.src-head { font-weight: 500; }
+.src-support { display: flex; align-items: center; gap: .45rem; color: var(--muted); font-size: .8rem; }
+
+.gaps { background: var(--gap-bg); border-radius: 12px; padding: 1rem 1.1rem; }
+.gaps h4 { color: var(--gap); }
+.gaps p { margin: 0 0 .5rem; }
+.gaps .worth { font-weight: 600; margin-top: .75rem; }
+.gaps ul { margin: 0; padding-left: 1.2rem; }
+.label.gp { background: var(--surface); color: var(--gap); border: 1px solid var(--border); }
+
+.tools { margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem; font-size: .9rem; }
+.tools summary { cursor: pointer; color: var(--muted); font-weight: 500; }
+.tools summary:hover { color: var(--text); }
+.tools ol { margin: .75rem 0 0; padding-left: 1.4rem; display: grid; gap: .35rem; }
+.tools code { font: 600 .82rem ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: .05rem .35rem; }
+@media print { .tools { display: none; } }
+</style>
+</head>
+<body>
+<main>
+  <header class="report-head">
+    <p class="eyebrow">Ask the research</p>
+    <h1>Research Q&amp;A</h1>
+    <p class="meta">21 October 2026, 15:18 · 5 questions · answered by claude-opus-5-5</p>
+  </header>
+
+  <section class="summary">
+    <h2>Studies searched</h2>
+    <div class="studies"><a class="study-chip" href="../reports/findings_2026-10-21_135950.html"><b>Sample transcripts</b><span>6 participants · 10 findings</span></a><a class="study-chip" href="../reports/findings_2026-10-21_151218.html"><b>Onboarding interviews</b><span>6 participants · 13 findings</span></a><a class="study-chip" href="../reports/findings_2026-10-21_151339.html"><b>Mobile interviews</b><span>5 participants · 7 findings</span></a></div>
+    <p class="how">
+      Answers come only from the findings reports. Every cited finding and quote was checked by code:
+      quotes must match a verified quote in the cited finding, word for word.
+      <span class="label in">Interpretation</span> in the reports is an AI hypothesis, not evidence.
+    </p>
+  </section>
+
+  <section class="overview"><h2>Questions</h2><ol>
+          <li><a href="#q-1"><span class="num">01</span>
+            <span class="ov-head">What do we know about booking conflicts?</span>
+            <span class="ov-support"><span class="badge cov-warn sm">◐ Partly covered</span></span></a></li>
+          <li><a href="#q-2"><span class="num">02</span>
+            <span class="ov-head">What did users say about using LabLoop on their phones?</span>
+            <span class="ov-support"><span class="badge cov-ok sm">✓ Covered by the research</span></span></a></li>
+          <li><a href="#q-3"><span class="num">03</span>
+            <span class="ov-head">Is onboarding LabLoop&#x27;s job or the lab&#x27;s job?</span>
+            <span class="ov-support"><span class="badge cov-warn sm">◐ Partly covered</span></span></a></li>
+          <li><a href="#q-4"><span class="num">04</span>
+            <span class="ov-head">Why did users love the new calendar sync feature?</span>
+            <span class="ov-support"><span class="badge cov-gap sm">○ Not covered by the research</span></span></a></li>
+          <li><a href="#q-5"><span class="num">05</span>
+            <span class="ov-head">What do users think about LabLoop&#x27;s pricing?</span>
+            <span class="ov-support"><span class="badge cov-warn sm">◐ Partly covered</span></span></a></li></ol></section>
+
+  <section class="findings">
+    <h2>Answers</h2>
+    
+    <article class="card turn" id="q-1">
+      <div class="question">
+        <span class="label ev">Question 1</span>
+        <h3>What do we know about booking conflicts?</h3>
+      </div>
+      <div class="badges"><span class="badge cov-warn">◐ Partly covered</span><span class="badge okb">✓ All 21 citations verified</span></div>
+      <p class="summary-text">Across all three studies, booking conflicts have several separate causes. In each case at most 2 participants per study raised it: near-simultaneous double bookings, mobile bookings that fail without telling the user, back-to-back bookings with no setup buffer or rule enforcement, and maintenance windows added after a slot was booked. Facility technicians end up settling these disputes by hand, and they see it as a trust problem. Related problems include ghost bookings (slots booked but not used) and clashes with personal calendars. We know little about how often conflicts happen or what causes them technically.</p>
+      <section class="evidence"><h4><span class="label ev">Evidence</span> From the research</h4><ol class="points">
+        <li class="point">
+          <p>Near-simultaneous double bookings: one core facility technician (P04, a single source in Sample transcripts) reported two double bookings on the cell sorter in the past month. Two people booked at almost the same moment and both turned up. P04 had to pick who got the slot, felt it made them look biased, and named this as the one thing to change. An earlier AI interpretation guessed it could be a concurrency bug. That is a hypothesis, not something confirmed.</p>
+          
+          <figure class="quote ok">
+            <blockquote>Double bookings when two people book at almost the same moment. It&#x27;s rare, but it&#x27;s happened twice in the past month on the cell sorter, and both people showed up thinking they had the slot.</blockquote>
+            <figcaption>
+              <span class="pid" title="Core facility technician, shared imaging and flow cytometry core (serves ~30 labs)">P04</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F06.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>Stop the double bookings. That&#x27;s a trust thing. If people can&#x27;t trust the booking, the whole system falls apart.</blockquote>
+            <figcaption>
+              <span class="pid" title="Core facility technician, shared imaging and flow cytometry core (serves ~30 labs)">P04</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F06.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-6" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F06</span>
+            <span class="src-head">Near-simultaneous bookings can create double bookings that damage trust in the system</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 1 of 6 participants <span class="badge warn sm">Single source</span></span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Mobile bookings that fail without an error (2 of 5 in Mobile interviews): on a weak connection the confirm action can spin without finishing. The booking doesn&#x27;t save, and two people turn up for the same slot. A technician (M02) said this happened twice this term and that they settle these cases with a judgement call. In one case the screenshot offered as proof showed the screen from before confirmation. M01 asked for a clear success or failure message. Contrasting view: M04&#x27;s only conflict came from a maintenance window, not from using a phone.</p>
+          
+          <figure class="quote ok">
+            <blockquote>Twice this term, someone booked from their phone, the booking didn&#x27;t save properly, and they turned up to find another person on the instrument.</blockquote>
+            <figcaption>
+              <span class="pid" title="Instrument technician, university mass spectrometry facility">M02</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F01.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>Tell me clearly whether my booking actually went through. That&#x27;s all I need from the field.</blockquote>
+            <figcaption>
+              <span class="pid" title="PhD student (3rd year), field ecology lab; splits time between field sites and the lab">M01</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F01.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151339.html#finding-1" title="Open this finding in its report">
+            <span class="src-study">Mobile interviews · F01</span>
+            <span class="src-head">Mobile bookings can fail silently on poor connections, leaving users unsure whether a slot is theirs and leading to on-site conflicts</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 5 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Maintenance windows added after a booking can cause conflicts when the user misses the notification email (M04, contrasting view in mobile_interviews/F01). Separately, 2 of 6 in Sample transcripts said scheduled maintenance blocking works well and prevents disputes over times when an instrument isn&#x27;t available.</p>
+          
+          <figure class="quote ok">
+            <blockquote>Once, but that was a maintenance window that got added after I&#x27;d booked, and I didn&#x27;t see the email. Not a mobile thing.</blockquote>
+            <figcaption>
+              <span class="pid" title="Postdoctoral researcher, university structural biology lab">M04</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F01.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>That&#x27;s my favourite feature by a mile. It saves me from having to argue with people about why they can&#x27;t book Monday at eight.</blockquote>
+            <figcaption>
+              <span class="pid" title="Core facility technician, shared imaging and flow cytometry core (serves ~30 labs)">P04</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F09.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151339.html#finding-1" title="Open this finding in its report">
+            <span class="src-study">Mobile interviews · F01</span>
+            <span class="src-head">Mobile bookings can fail silently on poor connections, leaving users unsure whether a slot is theirs and leading to on-site conflicts</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 5 participants</span>
+          </a>
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-9" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F09</span>
+            <span class="src-head">Maintenance blocking is a well-liked feature for instrument owners</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Booking rules and setup buffers aren&#x27;t enforced (2 of 6 in Onboarding interviews). LabLoop allows back-to-back bookings with no buffer, but the cell sorter needs 30 minutes of setup. A training coordinator said this causes conflicts every couple of weeks, mostly with newer users. Unwritten limits, such as 4 hours a day on the confocal, aren&#x27;t shown when someone books.</p>
+          
+          <figure class="quote ok">
+            <blockquote>LabLoop lets two bookings sit back to back with no buffer.</blockquote>
+            <figcaption>
+              <span class="pid" title="Training coordinator, shared microscopy and cytometry core (serves ~25 labs)">O04</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F08.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>If there&#x27;s a rule, the system could just tell me when I&#x27;m booking. Or stop me.</blockquote>
+            <figcaption>
+              <span class="pid" title="First-year PhD student, university cell biology lab (joined 6 weeks ago)">O01</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F08.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-8" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F08</span>
+            <span class="src-head">Booking rules and instrument constraints are not communicated or enforced at booking time</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Tapping the wrong slot on mobile (2 of 5 in Mobile interviews): thin time slots lead to mis-bookings that have to be cancelled and rebooked. This finding describes self-inflicted errors, not clashes with other people.</p>
+          
+          <figure class="quote ok">
+            <blockquote>I had to zoom in to find the right half hour, and the first time I tapped I got the slot below, so I had to cancel and do it again.</blockquote>
+            <figcaption>
+              <span class="pid" title="Undergraduate summer research student, university chemistry lab">M05</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F02.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151339.html#finding-2" title="Open this finding in its report">
+            <span class="src-study">Mobile interviews · F02</span>
+            <span class="src-head">Time slots on the mobile calendar are too small to tap accurately, causing mis-bookings</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 5 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Related problem, ghost bookings: slots that are booked but unused block other people (4 of 6 in Sample transcripts; 2 of 5 in Mobile interviews). Junior users don&#x27;t feel able to use an empty booked slot. M02 suggested that a check-in record would also help resolve conflicts. Contrasting views: a PI (P03) worried that auto-cancelling would add stress, and a small startup (P05) said it isn&#x27;t a problem for them.</p>
+          
+          <figure class="quote ok">
+            <blockquote>Sometimes the rotavap shows booked and nobody&#x27;s there. I don&#x27;t feel like I can just use it, though, in case they&#x27;re about to come back.</blockquote>
+            <figcaption>
+              <span class="pid" title="Undergraduate summer research student, university chemistry lab">M05</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F03.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>If we started auto-cancelling slots I think we&#x27;d create more stress, not less.</blockquote>
+            <figcaption>
+              <span class="pid" title="Principal investigator, university chemistry lab (12 people)">P03</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F01.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-1" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F01</span>
+            <span class="src-head">Booked-but-unused slots (&#x27;no-shows&#x27; or &#x27;ghost bookings&#x27;) block others from shared instruments, and users rely on manual workarounds</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></span> 4 of 6 participants</span>
+          </a>
+          <a class="source" href="../reports/findings_2026-10-21_151339.html#finding-3" title="Open this finding in its report">
+            <span class="src-study">Mobile interviews · F03</span>
+            <span class="src-head">Booked equipment often sits unused, and there is no check-in to release no-show slots</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 5 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Clashes with personal schedules: with no calendar integration (4 of 6 in Sample transcripts), users check LabLoop and their own calendars by hand to avoid booking themselves into two things at once, such as an instrument slot and a seminar.</p>
+          
+          <figure class="quote ok">
+            <blockquote>I end up typing my bookings into my calendar by hand so I don&#x27;t double-book myself with seminars.</blockquote>
+            <figcaption>
+              <span class="pid" title="PhD student (4th year), university neuroscience lab">P02</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F04.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-4" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F04</span>
+            <span class="src-head">Lack of calendar integration forces users to check two places or re-enter bookings by hand</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></span> 4 of 6 participants</span>
+          </a></div>
+        </li></ol></section>
+      
+      <section class="gaps">
+        <h4><span class="label gp">Gaps</span> What the research doesn't cover</h4>
+        <p>The evidence on double booking itself is thin. The near-simultaneous case comes from one participant, and the mobile save-failure case from 2 of 5. We have no data on how often conflicts happen beyond these few reports, and no confirmed technical cause. We also don&#x27;t know how users other than technicians feel when they lose a disputed slot, or how widespread this is across different kinds of facility. Nobody looked at how conflicts are resolved beyond technicians making judgement calls. Our evidence is all interview reports, with no system logs to back them up.</p>
+        <p class="worth">Worth studying</p><ul><li>Analyse booking logs for overlapping bookings to measure how often they happen, and whether they come from concurrent requests, mobile save failures or edits made after booking.</li><li>Interview more shared core facility staff and users about how conflicts get resolved and how that affects trust in the system.</li><li>Test clearer booking confirmation states (success, pending, failed) on mobile under poor network conditions.</li><li>Explore per-instrument rules (setup buffers, maximum duration) and check-in records as ways to prevent and settle conflicts, including how PIs react to them.</li></ul>
+      </section>
+      
+      <details class="tools">
+        <summary>How this was answered: 11 tool calls (list_studies, search_findings ×2, get_finding ×8)</summary>
+        <ol><li><code>list_studies</code>  <span class="muted">→ 3 studies, 30 findings</span></li><li><code>search_findings</code> query: booking conflict <span class="muted">→ 10 matching findings</span></li><li><code>search_findings</code> query: double booking clash overlap <span class="muted">→ 10 matching findings</span></li><li><code>get_finding</code> finding_id: sample_transcripts/F06 <span class="muted">→ Near-simultaneous bookings can create double bookings that damage trus (1 of 6 participants)</span></li><li><code>get_finding</code> finding_id: mobile_interviews/F01 <span class="muted">→ Mobile bookings can fail silently on poor connections, leaving users u (2 of 5 participants)</span></li><li><code>get_finding</code> finding_id: sample_transcripts/F04 <span class="muted">→ Lack of calendar integration forces users to check two places or re-en (4 of 6 participants)</span></li><li><code>get_finding</code> finding_id: onboarding_interviews/F08 <span class="muted">→ Booking rules and instrument constraints are not communicated or enfor (2 of 6 participants)</span></li><li><code>get_finding</code> finding_id: mobile_interviews/F03 <span class="muted">→ Booked equipment often sits unused, and there is no check-in to releas (2 of 5 participants)</span></li><li><code>get_finding</code> finding_id: mobile_interviews/F02 <span class="muted">→ Time slots on the mobile calendar are too small to tap accurately, cau (2 of 5 participants)</span></li><li><code>get_finding</code> finding_id: sample_transcripts/F01 <span class="muted">→ Booked-but-unused slots (&#x27;no-shows&#x27; or &#x27;ghost bookings&#x27;) block others (4 of 6 participants)</span></li><li><code>get_finding</code> finding_id: sample_transcripts/F09 <span class="muted">→ Maintenance blocking is a well-liked feature for instrument owners (2 of 6 participants)</span></li></ol>
+      </details>
+    </article>
+    <article class="card turn" id="q-2">
+      <div class="question">
+        <span class="label ev">Question 2</span>
+        <h3>What did users say about using LabLoop on their phones?</h3>
+      </div>
+      <div class="badges"><span class="badge cov-ok">✓ Covered by the research</span><span class="badge okb">✓ All 23 citations verified</span></div>
+      <p class="summary-text">People&#x27;s views on using LabLoop on a phone split by role and where they work. Bench and field users (students, field researchers) depend on the phone for booking. For them it&#x27;s fiddly: thin time slots cause wrong-slot bookings, and on weak connections bookings can fail without any error. Desk-based users mainly use the phone for quick checks and cancellations, and they say it works fine for that. Other complaints were missed email notifications (some want push notifications instead) and a slow approval flow for PIs, which comes from one participant.</p>
+      <section class="evidence"><h4><span class="label ev">Evidence</span> From the research</h4><ol class="points">
+        <li class="point">
+          <p>Hard to tap the right slot, causing wrong-slot bookings: 2 of 6 participants in Sample transcripts and 2 of 5 in Mobile interviews said the mobile calendar is the desktop layout shrunk down. Slots are too thin to tap accurately, so people zoom in, book the wrong hour, and have to cancel and rebook. Contrasting views: P05 has had no trouble and thinks a big phone may help. M04 agrees the slots are small but thinks booking shouldn&#x27;t be done on a phone at all.</p>
+          
+          <figure class="quote ok">
+            <blockquote>The mobile site is just the desktop site shrunk down. I have to pinch and zoom to hit the right time slot, and twice I&#x27;ve booked the wrong hour because my thumb landed on the row below.</blockquote>
+            <figcaption>
+              <span class="pid" title="PhD student (4th year), university neuroscience lab">P02</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F03.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>Most times, honestly. The slots are so thin.</blockquote>
+            <figcaption>
+              <span class="pid" title="Undergraduate summer research student, university chemistry lab">M05</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F02.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>I haven&#x27;t had any trouble. I&#x27;ve got a big phone, maybe that helps.</blockquote>
+            <figcaption>
+              <span class="pid" title="Postdoctoral researcher, small biotech startup (6 scientists)">P05</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F03.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>I don&#x27;t think booking is something you should be doing on a phone anyway.</blockquote>
+            <figcaption>
+              <span class="pid" title="Postdoctoral researcher, university structural biology lab">M04</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F02.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-3" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F03</span>
+            <span class="src-head">Booking on a phone is fiddly and error-prone for users who are rarely at a desk</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a>
+          <a class="source" href="../reports/findings_2026-10-21_151339.html#finding-2" title="Open this finding in its report">
+            <span class="src-study">Mobile interviews · F02</span>
+            <span class="src-head">Time slots on the mobile calendar are too small to tap accurately, causing mis-bookings</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 5 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Bookings can fail without an error on poor connections (2 of 5 in Mobile interviews). The confirm action spins without finishing, the booking doesn&#x27;t save, and two people end up at the instrument for the same slot. Users want a clear confirmation or error message.</p>
+          
+          <figure class="quote ok">
+            <blockquote>The page took about a minute to load, and then when I hit &quot;confirm&quot; it just spun and spun. I had no idea if it worked.</blockquote>
+            <figcaption>
+              <span class="pid" title="PhD student (3rd year), field ecology lab; splits time between field sites and the lab">M01</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F01.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>Tell me clearly whether my booking actually went through. That&#x27;s all I need from the field.</blockquote>
+            <figcaption>
+              <span class="pid" title="PhD student (3rd year), field ecology lab; splits time between field sites and the lab">M01</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F01.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151339.html#finding-1" title="Open this finding in its report">
+            <span class="src-study">Mobile interviews · F01</span>
+            <span class="src-head">Mobile bookings can fail silently on poor connections, leaving users unsure whether a slot is theirs and leading to on-site conflicts</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 5 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>How much people need mobile depends on role and setting (3 of 5 in Mobile interviews). A technician, a PI and a postdoc use the phone for quick checks or cancellations and go to a desk for more complex tasks. The technician said the phone version hides options. Contrasting views: M05 (no safe place for a laptop at the bench) and M01 (often at remote field sites) rely mainly or entirely on the phone. In Sample transcripts, P02 named mobile as the one thing to change.</p>
+          
+          <figure class="quote ok">
+            <blockquote>Mostly to check what&#x27;s on today, or to cancel something if an experiment fails. For that it&#x27;s perfectly fine.</blockquote>
+            <figcaption>
+              <span class="pid" title="Postdoctoral researcher, university structural biology lab">M04</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F06.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>For quick checks it&#x27;s fine. For anything like changing a maintenance window, I go to my desk. The phone version hides half the options.</blockquote>
+            <figcaption>
+              <span class="pid" title="Instrument technician, university mass spectrometry facility">M02</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F06.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>Always on my phone. I don&#x27;t bring my laptop to the lab because there&#x27;s nowhere safe to put it near the benches.</blockquote>
+            <figcaption>
+              <span class="pid" title="Undergraduate summer research student, university chemistry lab">M05</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F06.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>Make it work properly on a phone. That&#x27;s where I actually am when I need it.</blockquote>
+            <figcaption>
+              <span class="pid" title="PhD student (4th year), university neuroscience lab">P02</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F03.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151339.html#finding-6" title="Open this finding in its report">
+            <span class="src-study">Mobile interviews · F06</span>
+            <span class="src-head">Some users keep the phone for quick checks and do complex tasks on desktop, while others depend on mobile entirely</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></span> 3 of 5 participants</span>
+          </a>
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-3" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F03</span>
+            <span class="src-head">Booking on a phone is fiddly and error-prone for users who are rarely at a desk</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Notifications (2 of 5 in Mobile interviews): email notifications get missed. A field researcher would rather have push notifications on the lock screen. Another user gets about ten emails a day, mostly about other people&#x27;s bookings, and missed a cancellation of their own booking. Contrasting view: M04 turned most notifications off and checks the calendar directly.</p>
+          
+          <figure class="quote ok">
+            <blockquote>I&#x27;d love push notifications on my phone instead of emails, because in the field I&#x27;m not checking email but I do see my lock screen.</blockquote>
+            <figcaption>
+              <span class="pid" title="PhD student (3rd year), field ecology lab; splits time between field sites and the lab">M01</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F04.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>Maybe ten a day? Most of them are about other people&#x27;s bookings. I&#x27;ve missed a cancellation of my own because it was buried in there.</blockquote>
+            <figcaption>
+              <span class="pid" title="Undergraduate summer research student, university chemistry lab">M05</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F04.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151339.html#finding-4" title="Open this finding in its report">
+            <span class="src-study">Mobile interviews · F04</span>
+            <span class="src-head">Email notifications are missed; some users want phone push notifications instead</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 5 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Approving bookings on a phone is slow. This comes from one PI (M03, a single source in Mobile interviews). The email link leads to a full login, and the approvals page is hidden in a menu on mobile. Each approval takes 2 to 3 minutes, and when approvals are delayed students lose a day. M03 asked for one-tap approval.</p>
+          
+          <figure class="quote ok">
+            <blockquote>The student can&#x27;t start their overnight run, so they lose a day.</blockquote>
+            <figcaption>
+              <span class="pid" title="Principal investigator, university biophysics lab (7 people)">M03</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F05.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>An approve button in the email or the notification. One tap. I trust my students, I just need to say yes.</blockquote>
+            <figcaption>
+              <span class="pid" title="Principal investigator, university biophysics lab (7 people)">M03</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F05.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151339.html#finding-5" title="Open this finding in its report">
+            <span class="src-study">Mobile interviews · F05</span>
+            <span class="src-head">Approving bookings on a phone is slow for PIs, which delays students&#x27; work</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 1 of 5 participants <span class="badge warn sm">Single source</span></span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Mobile check-in idea: a technician (M02, 1 of the 2 supporters of mobile_interviews/F03) has mounted a wall tablet and suggested that tapping &#x27;I&#x27;m here&#x27; within fifteen minutes could release no-show slots. LabLoop currently has no check-in feature.</p>
+          
+          <figure class="quote ok">
+            <blockquote>If they had to tap &quot;I&#x27;m here&quot; on the tablet within fifteen minutes, we could release the slot.</blockquote>
+            <figcaption>
+              <span class="pid" title="Instrument technician, university mass spectrometry facility">M02</span>
+              <span class="muted small">Mobile interviews</span>
+              <span class="check ok" title="Matches a verified quote in mobile_interviews/F03.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151339.html#finding-3" title="Open this finding in its report">
+            <span class="src-study">Mobile interviews · F03</span>
+            <span class="src-head">Booked equipment often sits unused, and there is no check-in to release no-show slots</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 5 participants</span>
+          </a></div>
+        </li></ol></section>
+      
+      <section class="gaps">
+        <h4><span class="label gp">Gaps</span> What the research doesn't cover</h4>
+        <p>The samples are small (2 to 3 participants per theme), and the approval finding comes from one person. We don&#x27;t know whether people use a native app or the mobile website, or what devices and screen sizes they have, beyond one participant guessing that a big phone helps. There is no usage data on what share of bookings are made on mobile, and no data on how often mobile bookings fail.</p>
+        <p class="worth">Worth studying</p><ul><li>Run usability tests of the mobile booking flow on a range of screen sizes and under poor network conditions.</li><li>Use analytics to measure what share of bookings, cancellations and approvals happen on mobile, broken down by role.</li><li>Interview more PIs and approvers to check whether the slow mobile approval problem is widespread.</li><li>Test whether push notifications or more selective alerts reduce missed changes to users&#x27; own bookings.</li></ul>
+      </section>
+      
+      <details class="tools">
+        <summary>How this was answered: 5 tool calls (search_findings, get_finding ×4)</summary>
+        <ol><li><code>search_findings</code> query: phone mobile app tablet <span class="muted">→ 8 matching findings</span></li><li><code>get_finding</code> finding_id: sample_transcripts/F03 <span class="muted">→ Booking on a phone is fiddly and error-prone for users who are rarely (2 of 6 participants)</span></li><li><code>get_finding</code> finding_id: mobile_interviews/F04 <span class="muted">→ Email notifications are missed; some users want phone push notificatio (2 of 5 participants)</span></li><li><code>get_finding</code> finding_id: mobile_interviews/F05 <span class="muted">→ Approving bookings on a phone is slow for PIs, which delays students&#x27; (1 of 5 participants)</span></li><li><code>get_finding</code> finding_id: mobile_interviews/F06 <span class="muted">→ Some users keep the phone for quick checks and do complex tasks on des (3 of 5 participants)</span></li></ol>
+      </details>
+    </article>
+    <article class="card turn" id="q-3">
+      <div class="question">
+        <span class="label ev">Question 3</span>
+        <h3>Is onboarding LabLoop&#x27;s job or the lab&#x27;s job?</h3>
+      </div>
+      <div class="badges"><span class="badge cov-warn">◐ Partly covered</span><span class="badge okb">✓ All 21 citations verified</span></div>
+      <p class="summary-text">Participants disagree, and the research can&#x27;t settle this for you: it&#x27;s partly a product strategy decision. One lab manager (O02) said outright that onboarding is the lab&#x27;s job. A core training coordinator (O04) said a human-first approach doesn&#x27;t scale and asked for LabLoop to do some of the explaining. New users, with support from an admin and the coordinator, describe getting stuck when the software gives no reason or next step. Overall the evidence points to a shared role: the lab supplies its local knowledge and LabLoop at least shows it at the moment people get blocked. But that framing comes from an earlier AI interpretation, not from what participants said.</p>
+      <section class="evidence"><h4><span class="label ev">Evidence</span> From the research</h4><ol class="points">
+        <li class="point">
+          <p>&#x27;Lab&#x27;s job&#x27; view: one lab manager (O02, Onboarding interviews) thinks it&#x27;s fine that LabLoop doesn&#x27;t explain why access is refused. O02 wants new users to go to a person so they learn the lab&#x27;s culture, and worries that a generic message could steer them away from the lab manager. This is one participant&#x27;s view.</p>
+          
+          <figure class="quote ok">
+            <blockquote>I think it&#x27;s fine that LabLoop doesn&#x27;t explain everything. Onboarding is the lab&#x27;s job, not the software&#x27;s.</blockquote>
+            <figcaption>
+              <span class="pid" title="Lab manager, university genetics lab (14 people, high turnover of students)">O02</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F01.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>I want people to come to a human. That&#x27;s how they learn the culture.</blockquote>
+            <figcaption>
+              <span class="pid" title="Lab manager, university genetics lab (14 people, high turnover of students)">O02</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F09.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-1" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F01</span>
+            <span class="src-head">The &quot;not authorised&quot; message gives no reason or next step, so new users get stuck and email the wrong people</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 3 of 6 participants</span>
+          </a>
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-9" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F09</span>
+            <span class="src-head">Human-provided onboarding guidance can fill the gaps the software leaves</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Human guidance works when it happens: a postdoc (O05) had a smooth start because their lab manager sent a short document with screenshots, the instruments they&#x27;d need, and who to ask for training. O05 said the software itself explains little. This finding has 2 of 6 supporters in Onboarding interviews (O05 and O02).</p>
+          
+          <figure class="quote ok">
+            <blockquote>The document from my lab manager, really. Without it I think I&#x27;d have been as confused as some of the students. The software itself doesn&#x27;t explain much, but a good human explanation filled the gap.</blockquote>
+            <figcaption>
+              <span class="pid" title="Postdoctoral researcher, recently moved from industry to a university immunology lab">O05</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F09.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-9" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F09</span>
+            <span class="src-head">Human-provided onboarding guidance can fill the gaps the software leaves</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Human-first doesn&#x27;t scale for shared cores: the training coordinator of a core serving about 25 labs (O04) said they can&#x27;t be the person all of roughly 120 new users a year come to. O04 needs the system to do some of the explaining.</p>
+          
+          <figure class="quote ok">
+            <blockquote>For a lab&#x27;s own equipment, maybe. For the core, with a hundred and twenty people a year, I can&#x27;t be the person everyone comes to. I need the system to do some of that explaining.</blockquote>
+            <figcaption>
+              <span class="pid" title="Training coordinator, shared microscopy and cytometry core (serves ~25 labs)">O04</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F09.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-9" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F09</span>
+            <span class="src-head">Human-provided onboarding guidance can fill the gaps the software leaves</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>When the lab&#x27;s guidance doesn&#x27;t reach people, the software gives them a dead end. In Onboarding interviews, 3 of 6 (a new PhD student, the core coordinator and a department admin) described the &#x27;not authorised&#x27; message giving no reason or next step. New users email IT or the wrong admin, and some ask a friend to book for them. In Sample transcripts, one undergraduate (P06, a single source) lost about a week this way.</p>
+          
+          <figure class="quote ok">
+            <blockquote>When it says I&#x27;m not authorised, tell me why and what to do. &quot;You need confocal training, here&#x27;s how to sign up.&quot; That would have saved me a lot of confused emails.</blockquote>
+            <figcaption>
+              <span class="pid" title="First-year PhD student, university cell biology lab (joined 6 weeks ago)">O01</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F01.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>I get a lot of emails from confused new people who can&#x27;t book anything. I usually have to forward them to their lab manager or the core.</blockquote>
+            <figcaption>
+              <span class="pid" title="Department research administrator (manages LabLoop accounts for 9 labs)">O06</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F01.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>Even one sentence saying &quot;you need training, contact this person&quot; would have saved me a week.</blockquote>
+            <figcaption>
+              <span class="pid" title="Undergraduate research assistant (part-time, 10 hrs/week), university ecology lab">P06</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F05.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-1" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F01</span>
+            <span class="src-head">The &quot;not authorised&quot; message gives no reason or next step, so new users get stuck and email the wrong people</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 3 of 6 participants</span>
+          </a>
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-5" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F05</span>
+            <span class="src-head">New users hit an unexplained &#x27;not authorised&#x27; block with no guidance on training or who to contact</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 1 of 6 participants <span class="badge warn sm">Single source</span></span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>What happens when access is blocked: 3 of 6 in Onboarding interviews described new users booking under other people&#x27;s names. This makes usage records misleading and blurs who is accountable when something goes wrong.</p>
+          
+          <figure class="quote ok">
+            <blockquote>My host booked time for me under her own name. Which worked, but then everyone thought she was using the microscope all the time, and when something went wrong it looked like it was her session.</blockquote>
+            <figcaption>
+              <span class="pid" title="Visiting researcher (3-month stay), from a partner university abroad">O03</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F04.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-4" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F04</span>
+            <span class="src-head">Access barriers push new users into booking under other people&#x27;s names</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 3 of 6 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>Even labs that run onboarding themselves are held back by the tool. Two of 6 in Onboarding interviews (a lab manager and the core coordinator) said granting access after training is manual and done one instrument at a time. LabLoop isn&#x27;t connected to training records, which leads to spreadsheets, delays and wrong unlocks. Separately, 2 of 6 (O01 and O03) said training availability and the fact that prior training isn&#x27;t recognised delayed their research.</p>
+          
+          <figure class="quote ok">
+            <blockquote>Our training records live in the university&#x27;s learning system. LabLoop doesn&#x27;t know about them. So after every session, I sit with a list and manually tick people off in LabLoop. If I&#x27;m away, nobody gets unlocked.</blockquote>
+            <figcaption>
+              <span class="pid" title="Training coordinator, shared microscopy and cytometry core (serves ~25 labs)">O04</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F02.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>I had already done the same training at my home institution, on the same model of microscope. But there was no way to record that. I had to do it again here.</blockquote>
+            <figcaption>
+              <span class="pid" title="Visiting researcher (3-month stay), from a partner university abroad">O03</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F05.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-2" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F02</span>
+            <span class="src-head">Granting instrument access after training is manual, instrument-by-instrument, and error-prone</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a>
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-5" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F05</span>
+            <span class="src-head">Training availability and the lack of recognition for prior training delay new users&#x27; research</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>A possible middle ground. This is an earlier AI interpretation, a hypothesis that hasn&#x27;t been tested: let each lab or core configure the &#x27;not authorised&#x27; message with its own reason, contact or training sign-up link, and let labs attach their own guidance. The idea is that this could respect lab-led onboarding while helping cores scale. Separately, O04 did directly ask for the message to link to training sign-up.</p>
+          
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-1" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F01</span>
+            <span class="src-head">The &quot;not authorised&quot; message gives no reason or next step, so new users get stuck and email the wrong people</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 3 of 6 participants</span>
+          </a>
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-9" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F09</span>
+            <span class="src-head">Human-provided onboarding guidance can fill the gaps the software leaves</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a></div>
+        </li></ol></section>
+      
+      <section class="gaps">
+        <h4><span class="label gp">Gaps</span> What the research doesn't cover</h4>
+        <p>Nobody asked participants directly who should own onboarding. The &#x27;lab&#x27;s job&#x27; position comes from a single lab manager, and the scaling argument from a single core coordinator. We don&#x27;t know how common each view is among lab managers, PIs or core staff. Nobody has tested whether a configurable, lab-controlled message would satisfy both sides. Which way to go is ultimately a product strategy decision that the interviews can inform but can&#x27;t make.</p>
+        <p class="worth">Worth studying</p><ul><li>Ask lab managers, PIs and core staff directly which parts of onboarding they want to own and which they&#x27;d hand to the software.</li><li>Test a lab-configurable &#x27;not authorised&#x27; message (reason, contact, training link) with small labs and with shared cores.</li><li>Compare how quickly new users get to their first booking, and how much support load they create, in labs with and without written onboarding guidance.</li><li>Explore whether connecting LabLoop to training records, or bundling permissions into roles, would change who people think should own onboarding.</li></ul>
+      </section>
+      
+      <details class="tools">
+        <summary>How this was answered: 7 tool calls (search_findings, get_finding ×6)</summary>
+        <ol><li><code>search_findings</code> query: onboarding responsibility guidance training who <span class="muted">→ 10 matching findings</span></li><li><code>get_finding</code> finding_id: onboarding_interviews/F09 <span class="muted">→ Human-provided onboarding guidance can fill the gaps the software leav (2 of 6 participants)</span></li><li><code>get_finding</code> finding_id: onboarding_interviews/F01 <span class="muted">→ The &quot;not authorised&quot; message gives no reason or next step, so new user (3 of 6 participants)</span></li><li><code>get_finding</code> finding_id: onboarding_interviews/F02 <span class="muted">→ Granting instrument access after training is manual, instrument-by-ins (2 of 6 participants)</span></li><li><code>get_finding</code> finding_id: onboarding_interviews/F05 <span class="muted">→ Training availability and the lack of recognition for prior training d (2 of 6 participants)</span></li><li><code>get_finding</code> finding_id: onboarding_interviews/F04 <span class="muted">→ Access barriers push new users into booking under other people&#x27;s names (3 of 6 participants)</span></li><li><code>get_finding</code> finding_id: sample_transcripts/F05 <span class="muted">→ New users hit an unexplained &#x27;not authorised&#x27; block with no guidance o (1 of 6 participants)</span></li></ol>
+      </details>
+    </article>
+    <article class="card turn" id="q-4">
+      <div class="question">
+        <span class="label ev">Question 4</span>
+        <h3>Why did users love the new calendar sync feature?</h3>
+      </div>
+      <div class="badges"><span class="badge cov-gap">○ Not covered by the research</span><span class="badge okb">✓ All 8 citations verified</span></div>
+      <p class="summary-text">The research doesn&#x27;t show users loving a new calendar sync feature. None of the findings mention one existing. What participants described is the opposite: LabLoop doesn&#x27;t sync with their personal calendars, and several asked for it. The findings can tell you why people want calendar sync, but not how they reacted to a released feature.</p>
+      <section class="evidence"><h4><span class="label ev">Evidence</span> From the research</h4><ol class="points">
+        <li class="point">
+          <p>No calendar integration is a pain point. In Sample transcripts, 4 of 6 participants said it forces them to check LabLoop and their own calendar separately, or to copy bookings in by hand to avoid clashes such as a booking and a seminar at the same time. Both Outlook and Google Calendar users were among them. P05 named calendar sync as the one thing they would change. Contrasting view: the PI (P03) said it matters little to them because they don&#x27;t do the booking.</p>
+          
+          <figure class="quote ok">
+            <blockquote>It doesn&#x27;t talk to my calendar. I live in Outlook. I have to look at LabLoop and then separately look at my calendar to see if I can actually make the time I booked. It&#x27;s two places for one thing.</blockquote>
+            <figcaption>
+              <span class="pid" title="Lab manager, university molecular biology lab (9 people)">P01</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F04.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>I end up typing my bookings into my calendar by hand so I don&#x27;t double-book myself with seminars.</blockquote>
+            <figcaption>
+              <span class="pid" title="PhD student (4th year), university neuroscience lab">P02</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F04.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>Calendar sync. That would save me a little bit of friction every single day.</blockquote>
+            <figcaption>
+              <span class="pid" title="Postdoctoral researcher, small biotech startup (6 scientists)">P05</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F04.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <figure class="quote ok">
+            <blockquote>It doesn&#x27;t matter much to me personally. I&#x27;m not the one booking.</blockquote>
+            <figcaption>
+              <span class="pid" title="Principal investigator, university chemistry lab (12 people)">P03</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F04.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-4" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F04</span>
+            <span class="src-head">Lack of calendar integration forces users to check two places or re-enter bookings by hand</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></span> 4 of 6 participants</span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>In Onboarding interviews, one participant (O05, a single source) misses the automatic sync their previous industry booking system had. They named calendar sync as their top request.</p>
+          
+          <figure class="quote ok">
+            <blockquote>It doesn&#x27;t sync with my calendar. I use Outlook, and in industry our booking system put everything in my calendar automatically. I miss that.</blockquote>
+            <figcaption>
+              <span class="pid" title="Postdoctoral researcher, recently moved from industry to a university immunology lab">O05</span>
+              <span class="muted small">Onboarding interviews</span>
+              <span class="check ok" title="Matches a verified quote in onboarding_interviews/F13.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_151218.html#finding-13" title="Open this finding in its report">
+            <span class="src-study">Onboarding interviews · F13</span>
+            <span class="src-head">No sync with personal calendars</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 1 of 6 participants <span class="badge warn sm">Single source</span></span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>A related request: a core facility technician (P04) wants the core&#x27;s maintenance schedule to appear automatically in Outlook.</p>
+          
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-4" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F04</span>
+            <span class="src-head">Lack of calendar integration forces users to check two places or re-enter bookings by hand</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></span> 4 of 6 participants</span>
+          </a></div>
+        </li></ol></section>
+      
+      <section class="gaps">
+        <h4><span class="label gp">Gaps</span> What the research doesn't cover</h4>
+        <p>None of the three studies (Sample transcripts, Onboarding interviews, Mobile interviews) mentions a calendar sync feature that has been released, or anyone&#x27;s reaction to one. All the evidence describes sync as missing. If the feature has shipped since these interviews, it hasn&#x27;t been researched yet.</p>
+        <p class="worth">Worth studying</p><ul><li>If calendar sync has launched, interview users who have used it about what it changed, whether it reduced clashes and double-checking, and any problems with Outlook or Google Calendar.</li><li>Compare how much booking-related friction and self-double-booking users report before and after calendar sync.</li><li>Find out whether non-booking roles such as PIs, and small teams, value sync differently from students and facility staff.</li></ul>
+      </section>
+      
+      <details class="tools">
+        <summary>How this was answered: 3 tool calls (search_findings, get_finding ×2)</summary>
+        <ol><li><code>search_findings</code> query: calendar sync integration Outlook Google <span class="muted">→ 10 matching findings</span></li><li><code>get_finding</code> finding_id: onboarding_interviews/F13 <span class="muted">→ No sync with personal calendars (1 of 6 participants)</span></li><li><code>get_finding</code> finding_id: sample_transcripts/F10 <span class="muted">→ Small teams feel they are paying for enterprise features they don&#x27;t ne (1 of 6 participants)</span></li></ol>
+      </details>
+    </article>
+    <article class="card turn" id="q-5">
+      <div class="question">
+        <span class="label ev">Question 5</span>
+        <h3>What do users think about LabLoop&#x27;s pricing?</h3>
+      </div>
+      <div class="badges"><span class="badge cov-warn">◐ Partly covered</span><span class="badge okb">✓ All 4 citations verified</span></div>
+      <p class="summary-text">There&#x27;s very little on pricing. Only one participant commented on price directly: a postdoc at a six-person startup (P05) feels small teams pay for big-university features they&#x27;ll never use, and asked for a simpler price for small teams. One PI (P03) said proper cost reporting by grant is what justifies the subscription to their department. That&#x27;s a comment about value, not about price.</p>
+      <section class="evidence"><h4><span class="label ev">Evidence</span> From the research</h4><ol class="points">
+        <li class="point">
+          <p>Small teams pay for features they don&#x27;t use. This is a single source (P05, 1 of 6 in Sample transcripts), a postdoc at a startup with six scientists. P05 asked for simpler pricing for small teams and gave department billing as an example of a feature built for universities that they won&#x27;t use. P05 was otherwise positive: setup was quick and the product &#x27;does what it says&#x27;.</p>
+          
+          <figure class="quote ok">
+            <blockquote>Maybe a simpler price for small teams. We&#x27;re paying for features built for big universities, like department billing, that we&#x27;ll never use.</blockquote>
+            <figcaption>
+              <span class="pid" title="Postdoctoral researcher, small biotech startup (6 scientists)">P05</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F10.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-10" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F10</span>
+            <span class="src-head">Small teams feel they are paying for enterprise features they don&#x27;t need</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 1 of 6 participants <span class="badge warn sm">Single source</span></span>
+          </a></div>
+        </li>
+        <li class="point">
+          <p>For a university buyer, reporting justifies the cost. One PI (P03, one of 2 supporters of sample_transcripts/F07) said proper cost reporting by grant is what justifies the subscription to their department. Reporting by grant is currently unreliable because grant codes go into a free-text field. An earlier AI interpretation suggested reporting may be tied to renewal decisions. That is a hypothesis, not something participants said.</p>
+          
+          <figure class="quote ok">
+            <blockquote>Proper cost reporting by grant. That&#x27;s what justifies the subscription to my department.</blockquote>
+            <figcaption>
+              <span class="pid" title="Principal investigator, university chemistry lab (12 people)">P03</span>
+              <span class="muted small">Sample transcripts</span>
+              <span class="check ok" title="Matches a verified quote in sample_transcripts/F07.">✓ Verified in report</span>
+            </figcaption>
+            
+          </figure>
+          <p class="src-label">Sources</p><div class="sources">
+          <a class="source" href="../reports/findings_2026-10-21_135950.html#finding-7" title="Open this finding in its report">
+            <span class="src-study">Sample transcripts · F07</span>
+            <span class="src-head">Usage and cost reporting requires manual cleanup and cannot reliably split costs by grant</span>
+            <span class="src-support"><span class="dots" aria-hidden="true"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span> 2 of 6 participants</span>
+          </a></div>
+        </li></ol></section>
+      
+      <section class="gaps">
+        <h4><span class="label gp">Gaps</span> What the research doesn't cover</h4>
+        <p>None of the three studies looked at pricing directly. There&#x27;s no data on price levels, willingness to pay, how pricing compares with alternatives, who makes the purchasing decision, or how renewals happen. The two comments we have come from one startup postdoc and one university PI, and both were incidental. No one in Onboarding interviews or Mobile interviews talked about pricing. The department research administrator (O06) manages accounts, but no finding records their views on cost.</p>
+        <p class="worth">Worth studying</p><ul><li>Interview budget holders (PIs, department administrators, core facility managers, startup leads) about perceived value, willingness to pay and what drives renewal.</li><li>Test whether tiered or modular packaging (for example, a small-team tier without department billing) appeals to small commercial labs.</li><li>Find out which features buyers use to justify the subscription internally, such as grant cost reporting, permissions or maintenance blocking.</li></ul>
+      </section>
+      
+      <details class="tools">
+        <summary>How this was answered: 3 tool calls (search_findings ×2, get_finding)</summary>
+        <ol><li><code>search_findings</code> query: price pricing cost expensive subscription value <span class="muted">→ 10 matching findings</span></li><li><code>search_findings</code> query: paying budget licence money afford <span class="muted">→ 2 matching findings</span></li><li><code>get_finding</code> finding_id: sample_transcripts/F07 <span class="muted">→ Usage and cost reporting requires manual cleanup and cannot reliably s (2 of 6 participants)</span></li></ol>
+      </details>
+    </article>
+  </section>
+</main>
+</body>
+</html>

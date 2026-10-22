@@ -1,0 +1,27 @@
+Participant ID: P03
+Role: Principal investigator, university chemistry lab (12 people)
+Time using LabLoop: about 3 years (lab adopted it at her request)
+Interview date: 2026-09-10
+Interviewer: M. Lindqvist
+Note: Fictional sample transcript created for testing research-synth.
+---
+Interviewer: Thanks for speaking with us. How does LabLoop fit into your work?
+P03: Honestly, I barely touch it day to day. My students and postdocs do the booking. I'm the one who signs off on paying for it, so I look at it mostly through reports.
+Interviewer: What do you look at in those reports?
+P03: Utilization, mainly. When I write a grant or I'm arguing with the department about a service contract, I need to show how much an instrument is used and by whom. That's the reason I pushed for LabLoop in the first place.
+Interviewer: How well does it support that?
+P03: Partially. The numbers are in there, but getting them out is clumsy. I want a report I can drop straight into a budget justification, split by grant code. Right now my lab manager spends half a day reformatting the export.
+Interviewer: Is splitting by grant code something you can do today?
+P03: No. There's a free text field where people are supposed to type the grant, and of course half of them don't, and the other half spell it differently. So the cost allocation is basically guesswork.
+Interviewer: How do you feel about how people in your lab use the booking system?
+P03: I hear complaints that people book time and don't use it. I'm honestly less worried about that than some people are. Experiments run long, things fail, you need some slack. If we started auto-cancelling slots I think we'd create more stress, not less.
+Interviewer: Tell me more about that.
+P03: A student who's already behind gets bumped because they were twelve minutes late from a seminar? That's not the culture I want. I'd rather people talk to each other.
+Interviewer: What about calendar integration? Some people have mentioned that.
+P03: It doesn't matter much to me personally. I'm not the one booking. But I can see why the students would want it.
+Interviewer: Is there anything you'd like to see that we haven't discussed?
+P03: Better permission levels. I'd like certain instruments to be bookable only by people who've been trained on them, and I'd like to see that in one place instead of my lab manager keeping a separate list.
+Interviewer: If you could change one thing, what would it be?
+P03: Proper cost reporting by grant. That's what justifies the subscription to my department.
+Interviewer: Thank you, that's very helpful.
+P03: You're welcome.
