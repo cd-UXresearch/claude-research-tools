@@ -34,9 +34,7 @@ much to me personally"*). Finally, it suggested what a future study could
 investigate if the feature has since launched. All 8 citations in that answer
 were checked by code against the reports.
 
-> 📸 **[Screenshot placeholder: the calendar sync answer in the conversation page]**
-> Save an image as `docs/agent-calendar-sync.png` and replace this line with
-> `![The agent's answer to a false-premise question](docs/agent-calendar-sync.png)`
+[![The agent's answer to a false-premise question](docs/agent-calendar-sync.png)](https://cd-uxresearch.github.io/claude-research-tools/answers/conversation_2026-10-21_151824.html#q-4)
 
 ## The two tools
 
@@ -97,30 +95,24 @@ citations passed.
 
 ## See the examples
 
-These are the real outputs from my test run, included in this repository:
+These are the real outputs from my test run. Click through to see them live:
 
-- **Findings report:** [`reports/findings_2026-10-21_135950.html`](reports/findings_2026-10-21_135950.html)
-  (Sample transcripts: 10 findings, 6 participants). There are also reports for
-  the [onboarding](reports/findings_2026-10-21_151218.html) and
-  [mobile](reports/findings_2026-10-21_151339.html) studies.
-- **Agent conversation:** [`answers/conversation_2026-10-21_151824.html`](answers/conversation_2026-10-21_151824.html)
-  (5 questions across all three studies, including the calendar sync one).
+- **[Findings report: Sample transcripts](https://cd-uxresearch.github.io/claude-research-tools/reports/findings_2026-10-21_135950.html)**
+  (10 findings, 6 participants). There are also reports for the
+  [onboarding](https://cd-uxresearch.github.io/claude-research-tools/reports/findings_2026-10-21_151218.html)
+  and [mobile](https://cd-uxresearch.github.io/claude-research-tools/reports/findings_2026-10-21_151339.html)
+  studies.
+- **[Agent conversation](https://cd-uxresearch.github.io/claude-research-tools/answers/conversation_2026-10-21_151824.html)**
+  (5 questions across all three studies, including the calendar sync one). Each
+  cited source links to its finding in the report.
 
-GitHub shows `.html` files as code rather than as pages. To see them as designed,
-download the file and open it in your browser. Each report also has a
-plain-markdown version (`.md`) that GitHub displays directly.
+The top of a findings report:
 
-> 📸 **[Screenshot placeholder: the top of a findings report]**
-> Save an image as `docs/findings-report.png` and replace this line with
-> `![A findings report](docs/findings-report.png)`
+[![The top of a findings report: summary boxes, a verified-quotes banner, and the findings at a glance](docs/findings-report.png)](https://cd-uxresearch.github.io/claude-research-tools/reports/findings_2026-10-21_135950.html)
 
-> 📸 **[Screenshot placeholder: a finding card with verified quotes]**
-> Save an image as `docs/finding-card.png` and replace this line with
-> `![A finding card with verified quotes](docs/finding-card.png)`
+A finding card, with verified quotes, a contrasting view, and the interpretation kept separate:
 
-> 📸 **[Screenshot placeholder: the agent chat in the terminal, showing its tool calls]**
-> Save an image as `docs/agent-terminal.png` and replace this line with
-> `![The agent working in the terminal](docs/agent-terminal.png)`
+[![A finding card with verified quotes](docs/finding-card.png)](https://cd-uxresearch.github.io/claude-research-tools/reports/findings_2026-10-21_135950.html#finding-3)
 
 ## Run it yourself
 
